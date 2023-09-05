@@ -161,15 +161,21 @@ public static class Evaluator
                         value2 = variableEvaluator(substrings[i]);
                     }
                     //pop the value stack once and the operator stack once.
-                    int value1 = values.Pop();
-                    string op = operations.Pop();
+                    try
+                    {
+                        int value1 = values.Pop();
+                        string op = operations.Pop();
 
-                    //Apply the popped operator to the popped numbers.
+                        //Apply the popped operator to the popped numbers.
 
-                    int result = Evaluator.DoOperator(value1, value2, op);
+                        int result = Evaluator.DoOperator(value1, value2, op);
 
-                    //Push the result onto the value stack.
-                    values.Push(result);
+                        //Push the result onto the value stack.
+                        values.Push(result);
+                    } catch (InvalidOperationException e) {
+                        throw new ArgumentException();
+                    }
+                
                 }
                 else
                 {
@@ -204,9 +210,12 @@ public static class Evaluator
         }
         else //if there is something in the operations stack
         {
-            if (operations.Count !=1 || values.Count !=2 ||
-                ((!operations.Peek().Equals("+")) || !(operations.Peek().Equals("-"))))
+            if (operations.Count != 1 || values.Count != 2)
             {
+                if (!(operations.Peek().Equals("+")) || !(operations.Peek().Equals("-")))
+                {
+                    throw new ArgumentException();
+                }
                 throw new ArgumentException();
             } else
             {
