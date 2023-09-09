@@ -35,6 +35,7 @@ public static class Evaluator
             }
             if (!(Evaluator.IsInt(substrings[i]) || Evaluator.IsVar(substrings[i]) || Evaluator.IsOperator(substrings[i]))) //checking if the token is valid
             {
+                Console.WriteLine(substrings[i]);
                 throw new ArgumentException();
             }
 
@@ -87,7 +88,12 @@ public static class Evaluator
                     }
                 }
 
-                operations.Pop();
+                if (operations.Count!=0) {
+                    operations.Pop();
+                } else
+                {
+                    throw new ArgumentException();
+                }
 
                 if ((operations.Count != 0) && ((operations.Peek().Equals("*")) || (operations.Peek().Equals("/"))))
                 {
@@ -271,7 +277,7 @@ public static class Evaluator
             case "/"://if the operator is /
                 if (b == 0)
                 {
-                    throw new DivideByZeroException();
+                    throw new ArgumentException();
                 }
                 result = a / b;
                 break;
@@ -337,20 +343,42 @@ public static class Evaluator
             return false;
         }
 
+        int digitCount = 0;
+        int letterCount = 0;
+
         //checks if there is any instance where a letter comes after a digit
         for (int i = 1; i < s.Length; i++)
         {
 
             if (Char.IsLetter(s[i]) && Char.IsDigit(s[i - 1]))
             {
-
+                Console.WriteLine("failed here1");
                 return false;
             }
 
             if (Char.IsLetter(s[i]) && Evaluator.IsOperator(s[i].ToString()))
             {
+                Console.WriteLine("failed here2");
+
                 return false;
             }
+
+            if (Char.IsDigit(s[i]))
+            {
+                digitCount++;
+
+            }
+
+            if (Char.IsLetter(s[i]))
+            {
+                letterCount++;
+
+            }
+        }
+
+        if (letterCount == 0 || digitCount ==0)
+        {
+            return false;
         }
 
         return true;
