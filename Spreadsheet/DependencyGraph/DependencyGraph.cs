@@ -36,26 +36,41 @@ namespace SpreadsheetUtilities;
 /// </summary>
 public class DependencyGraph
 {
+    /// <summary>
+    /// Given the pairing (s, t), this class contains all the dependent values of s
+    /// using a Hashset. 
+    /// </summary>
     internal class DGNode
     {
         private HashSet<String> _dependentValues;
 
+        /// <summary>
+        /// Creates an empty DGNode
+        /// </summary>
         internal DGNode ()
         {
             _dependentValues = new HashSet<string>();
         }
 
+        /// <summary>
+        /// Creates an empty DGNode and adds the given parameter to the Node. 
+        /// </summary>
+        /// <param name="t"></param>
         internal DGNode(string t)
         {
             _dependentValues = new HashSet<string>();
             _dependentValues.Add(t);
         }
 
+        /// <summary>
+        /// Returns the list of dependents for the dependee
+        /// </summary>
         internal HashSet<String> DependentValues
         {
             get { return _dependentValues; }
         }
     }
+
     private Dictionary<string, DGNode> pairings;
 
     /// <summary>
@@ -110,7 +125,7 @@ public class DependencyGraph
     /// </summary>
     public bool HasDependents(string s)
     {
-        if (pairings.Keys.Contains(s) && pairings[s].DependentValues.Count!=0) //DGNode is not empty
+        if (pairings.Keys.Contains(s) && pairings[s].DependentValues.Count!=0) //If DGNode is not empty
         {
             return true;
         }

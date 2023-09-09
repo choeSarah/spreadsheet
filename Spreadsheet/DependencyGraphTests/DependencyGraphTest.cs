@@ -19,6 +19,7 @@ public class DependencyGraphTest
     {
         DependencyGraph t = new DependencyGraph();
         Assert.AreEqual(0, t.NumDependencies);
+        Assert.AreEqual(0, t.NumDependees("x"));
     }
 
     /// <summary>
