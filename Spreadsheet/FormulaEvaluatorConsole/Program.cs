@@ -7,14 +7,14 @@ class Program
 {
     static int NoKnownVars(String s)
     {
-        return 3;
+        return 0;
     }
 
 
     static void Main(string[] args)
     {
 
-        int result = Evaluator.Evaluate("a4-a4*a4/a4", NoKnownVars);
+        int result = Evaluator.Evaluate("2+5*7)", NoKnownVars);
         Console.WriteLine(result);
 
     }

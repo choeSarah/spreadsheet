@@ -2,6 +2,7 @@
 using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 
 namespace FormulaEvaluator;
@@ -25,256 +26,172 @@ public static class Evaluator
         String noWhiteSpace = Regex.Replace(exp, @"\s", ""); //remove all the white space in the expression
         string[] substrings = Regex.Split(noWhiteSpace, "(\\()|(\\))|(-)|(\\+)|(\\*)|(/)");  //turn the expression into tokens
 
-        //check if the expression is valid
-
-        for (int i = 0; i < substrings.Length; i++)
-        {
-            if (string.IsNullOrEmpty(substrings[i])) //if there is an empty token, just continue
-            {
-                continue;
-            }
-            if (!(Evaluator.IsInt(substrings[i]) || Evaluator.IsVar(substrings[i]) || Evaluator.IsOperator(substrings[i]))) //checking if the token is valid
-            {
-                Console.WriteLine(substrings[i]);
-                throw new ArgumentException();
-            }
-
-            if ((substrings[i].Equals("-") || substrings[i].Equals("+") || substrings[i].Equals("*") || substrings[i].Equals("/")) && (i == 0)) //checking against leading operators
-            {
-                throw new ArgumentException();
-            }
-
-            if ((substrings[i].Equals("-")) && (Evaluator.IsOperator(substrings[i - 1]))) //checking against negative numbers
-            {
-                throw new ArgumentException();
-            }
-        }
-
-
         //Fields
         Stack<int> values = new Stack<int>();
         Stack<string> operations = new Stack<string>();
 
-        //For each token
-        for (int i = 0; i < substrings.Length; i++)
+        foreach (string s in substrings)
         {
-            //Parantheses
-            if (substrings[i].Equals("("))
+            if (Evaluator.IsInteger(s)) //s is an integer
             {
-                operations.Push(substrings[i]);
-            }
-
-            if (substrings[i].Equals(")"))
-            {
-                if ((operations.Count != 0) && ((operations.Peek().Equals("+")) || (operations.Peek().Equals("-"))))
+                if (operations.Count > 0 && (operations.Peek().Equals("*") || operations.Peek().Equals("/")))
                 {
-                    try
+                    int result = Evaluator.StackOperation(values, operations, Int32.Parse(s));
+                    values.Push(result);
+                }
+                else
+                {
+                    values.Push(Int32.Parse(s));
+                }
+
+            }
+            else if (Evaluator.IsVar(s)) //s is a variable
+            {
+                if (operations.Count > 0 && (operations.Peek().Equals("*") || operations.Peek().Equals("/")))
+                {
+                    int result = Evaluator.StackOperation(values, operations, variableEvaluator(s));
+                    values.Push(result);
+                }
+                else
+                {
+                    values.Push(variableEvaluator(s));
+                }
+            } else if (s.Equals("+") || s.Equals("-")) //s is + or -
+            {
+                if (operations.Count > 0 && (operations.Peek().Equals("+") || operations.Peek().Equals("-")))
+                {
+                    int result = Evaluator.StackOperation(values, operations);
+                    values.Push(result);
+                }
+
+                    operations.Push(s);
+            } else if (s.Equals("*") || s.Equals("/")) //s is * or /
+            {
+                operations.Push(s);
+            } else if (s.Equals("(")) //s is (
+            {
+                operations.Push(s);
+            } else if (s.Equals(")")) { //s is )
+                if (operations.Count > 0)
+                {
+                    if (operations.Peek().Equals("+") || operations.Peek().Equals("-"))
                     {
-                        //pop the value stack twice and the operator stack once.
-                        int value2 = values.Pop();
-                        int value1 = values.Pop();
-                        string op = operations.Pop();
-
-                        //Apply the popped operator to the popped numbers.
-
-                        int result = Evaluator.DoOperator(value1, value2, op);
-
-                        //Push the result onto the value stack.
+                        int result = Evaluator.StackOperation(values, operations);
                         values.Push(result);
                     }
-                    catch (InvalidOperationException e)
+
+                    if (operations.Count > 0 && operations.Peek().Equals("("))
+                    {
+                        operations.Pop();
+                    }
+                    else
                     {
                         throw new ArgumentException();
                     }
-                }
 
-                if (operations.Count!=0) {
-                    operations.Pop();
+                    if (operations.Count > 0 && (operations.Peek().Equals("*") || operations.Peek().Equals("/")))
+                    {
+                        int result = Evaluator.StackOperation(values, operations);
+                        values.Push(result);
+                    }
                 } else
                 {
                     throw new ArgumentException();
                 }
 
-                if ((operations.Count != 0) && ((operations.Peek().Equals("*")) || (operations.Peek().Equals("/"))))
-                {
-                    try
-                    {
-                        //pop the value stack twice and the operator stack once.
-                        int value2 = values.Pop();
-                        int value1 = values.Pop();
-                        string op = operations.Pop();
-
-                        //Apply the popped operator to the popped numbers.
-
-                        int result = Evaluator.DoOperator(value1, value2, op);
-
-                        //Push the result onto the value stack.
-                        values.Push(result);
-                    }
-                    catch (InvalidOperationException e)
-                    {
-                        throw new ArgumentException();
-                    }
-                }
-            }
-
-            //Operations
-            if ((substrings[i].Equals("*")) || (substrings[i].Equals("/")))
+            } else if (string.IsNullOrEmpty(s))
             {
-                operations.Push(substrings[i]);
-            }
-
-            if ((substrings[i].Equals("+")) || (substrings[i].Equals("-")))
+                continue;
+            } else
             {
-                if ((operations.Count != 0) && ((operations.Peek().Equals("+")) || (operations.Peek().Equals("-"))))
-                {
-                    try
-                    {
-                        //pop the value stack twice and the operator stack once.
-                        int value2 = values.Pop();
-                        int value1 = values.Pop();
-                        string op = operations.Pop();
-
-                        //Apply the popped operator to the popped numbers.
-
-                        int result = Evaluator.DoOperator(value1, value2, op);
-
-                        //Push the result onto the value stack.
-                        values.Push(result);
-                    } catch (InvalidOperationException e)
-                    {
-                        throw new ArgumentException();
-                    }
-                }
-
-                operations.Push(substrings[i]);
-
+                throw new ArgumentException();
             }
+       }
 
-            //Operands
-
-            if ((Evaluator.IsInt(substrings[i])) || (Evaluator.IsVar(substrings[i])))
+        if (operations.Count>0) //operations stack still has something
+        {
+            if (operations.Count == 1 && values.Count == 2)
             {
-                if ((operations.Count != 0) && ((operations.Peek().Equals("*")) || (operations.Peek().Equals("/"))))
+                if (operations.Peek().Equals("+") || operations.Peek().Equals("-"))
                 {
-                    int value2 = -1;
-                    if (Evaluator.IsInt(substrings[i]))
-                    {
-                        value2 = Int32.Parse(substrings[i]);
-                    }
-                    else if (Evaluator.IsInt(substrings[i]))
-                    {
-                        value2 = variableEvaluator(substrings[i]);
-                    }
-                    //pop the value stack once and the operator stack once.
-                    try
-                    {
-                        int value1 = values.Pop();
-                        string op = operations.Pop();
-
-                        //Apply the popped operator to the popped numbers.
-
-                        int result = Evaluator.DoOperator(value1, value2, op);
-
-                        //Push the result onto the value stack.
-                        values.Push(result);
-                    } catch (InvalidOperationException e) {
-                        throw new ArgumentException();
-                    }
-                
+                    return Evaluator.StackOperation(values, operations);
                 }
                 else
                 {
-
-                    if (Evaluator.IsInt(substrings[i]))
-                    {
-                        values.Push(int.Parse(substrings[i]));
-                    }
-                    else if (Evaluator.IsVar(substrings[i]))
-                    {
-                        values.Push(variableEvaluator(substrings[i]));
-                    }
-
+                    throw new ArgumentException();
                 }
-
             }
-
-        }
-
-        //after the last token has been processed
-        if (operations.Count == 0) //if there is nothing in the operations stack
+            else
+            {
+                throw new ArgumentException();
+            }
+        } else //operations stack is empty
         {
+
             if (values.Count == 1)
             {
                 return values.Pop();
-
-            } else
+            }
+            else
             {
                 throw new ArgumentException();
             }
-
-        }
-        else //if there is something in the operations stack
-        {
-            if (operations.Count != 1 || values.Count != 2)
-            {
-                if (!(operations.Peek().Equals("+")) || !(operations.Peek().Equals("-")))
-                {
-                    throw new ArgumentException();
-                }
-                throw new ArgumentException();
-            } else
-            {
-                try
-                {
-                    //pop the value stack twice and the operator stack once.
-                    int value2 = values.Pop();
-                    int value1 = values.Pop();
-                    string op = operations.Pop();
-
-                    //Apply the popped operator to the popped numbers.
-
-                    int result = Evaluator.DoOperator(value1, value2, op);
-
-                    //Push the result onto the value stack.
-                    return result;
-                }
-                catch (InvalidOperationException e)
-                {
-                    throw new ArgumentException();
-                }
-            }
-
         }
 
     }
 
-    /// <summary>
-    /// Given 2 ints and an operator, it applies the operator to the two ints
-    /// </summary>
-    /// <param name="a">The first int</param>
-    /// <param name="b">The second int</param>
-    /// <param name="c">The operator</param>
-    /// <returns>Returns the answer</returns>
-    public static int DoOperator(int a, int b, string c)
+    private static int StackOperation (Stack<int> v, Stack <String> o, int a)
+    {
+        try
+        {
+            int value1 = v.Pop();
+            int value2 = a;
+            string operation = o.Pop();
+
+            int result = Evaluator.DoOperation(value1, value2, operation);
+
+            return result;
+        } catch (InvalidOperationException e)
+        {
+            throw new ArgumentException();
+        }
+        
+        //pop the value stack, pop the operator stack, and apply the popped
+       //operator to the popped number and t. Push the result onto the value stack.
+    }
+
+    private static int StackOperation(Stack<int> v, Stack<String> o)
+    {
+        try
+        {
+            int value2 = v.Pop();
+            int value1 = v.Pop();
+            string operation = o.Pop();
+
+            int result = Evaluator.DoOperation(value1, value2, operation);
+
+            return result;
+        } catch (InvalidOperationException e)
+        {
+            throw new ArgumentException();
+        }
+    }
+
+    private static int DoOperation (int a, int b, string op)
     {
         int result = -1;
-        switch (c)
+        switch (op)
         {
-            case "+": //if the operator is +
+            case "+":
                 result = a + b;
                 break;
-
-            case "-"://if the operator is -
-                result = a - b; 
+            case "-":
+                result = a - b;
                 break;
-
-
-            case "*"://if the operator is *
+            case "*":
                 result = a * b;
                 break;
-
-            case "/"://if the operator is /
+            case "/":
                 if (b == 0)
                 {
                     throw new ArgumentException();
@@ -286,103 +203,45 @@ public static class Evaluator
         return result;
     }
 
-    /// <summary>
-    /// Checks if the token is an operator
-    /// </summary>
-    /// <param name="s">The given token</param>
-    /// <returns>Returns a boolean; true if it is an operator; false otherwise</returns>
-    public static Boolean IsOperator(string s)
+    private static Boolean IsInteger(String s)
     {
-        if (s.Equals("(") || s.Equals(")") ||
-            s.Equals("+") || s.Equals("-") ||
-            s.Equals("*") || s.Equals("/"))
-        {
-            //Console.WriteLine("issue1: true");
-            return true;
-        }
-        else
-        {
-            // Console.WriteLine("issue1: false");
+        int value;
+        bool isNumeric = int.TryParse(s, out value);
 
-            return false;
-        }
-
+        return isNumeric;
     }
 
-    /// <summary>
-    /// Checks if the token is a number
-    /// </summary>
-    /// <param name="s">The given token</param>
-    /// <returns>Returns a boolean; true if its a number; false otherwise</returns>
-    public static Boolean IsInt(string s)
+    private static Boolean IsVar(String s)
     {
-        try
-        {
-            int result = Int32.Parse(s);
-        }
-        catch (FormatException E)
-        {
-
-            return false;
-        }
-
-        return true;
-    }
-
-    /// <summary>
-    /// This method checks if the given token is a valid variable
-    /// </summary>
-    /// <param name="s">Token to be checked</param>
-    /// <returns>Returns a boolean; true if it is a valid variable, false otherwise</returns>
-    public static Boolean IsVar(string s)
-    {
-        //if the token has less than 2 characters or if it starts with a digit
-        if (s.Length < 2 || Char.IsDigit(s[0]))
-        {
-
-            return false;
-        }
-
-        int digitCount = 0;
         int letterCount = 0;
+        int digitCount = 0;
 
-        //checks if there is any instance where a letter comes after a digit
-        for (int i = 1; i < s.Length; i++)
+        for (int i=0; i<s.Length; i++)
         {
-
-            if (Char.IsLetter(s[i]) && Char.IsDigit(s[i - 1]))
+            if (Char.IsLetter(s[i]))
             {
-                Console.WriteLine("failed here1");
-                return false;
-            }
+                letterCount++;
 
-            if (Char.IsLetter(s[i]) && Evaluator.IsOperator(s[i].ToString()))
-            {
-                Console.WriteLine("failed here2");
-
-                return false;
+                if (i > 0 && Char.IsDigit(s[i-1]))
+                {
+                    return false;
+                }
             }
 
             if (Char.IsDigit(s[i]))
             {
                 digitCount++;
-
-            }
-
-            if (Char.IsLetter(s[i]))
-            {
-                letterCount++;
-
+              
             }
         }
 
-        if (letterCount == 0 || digitCount ==0)
+        if (letterCount == 0 || digitCount == 0)
         {
             return false;
         }
 
         return true;
-    }
 
+    }
 
 }

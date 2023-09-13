@@ -1,0 +1,15 @@
+/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/Quiz/bin/Debug/net7.0/Quiz
+/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/Quiz/bin/Debug/net7.0/Quiz.deps.json
+/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/Quiz/bin/Debug/net7.0/Quiz.runtimeconfig.json
+/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/Quiz/bin/Debug/net7.0/Quiz.dll
+/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/Quiz/bin/Debug/net7.0/Quiz.pdb
+/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/Quiz/obj/Debug/net7.0/Quiz.csproj.AssemblyReference.cache
+/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/Quiz/obj/Debug/net7.0/Quiz.GeneratedMSBuildEditorConfig.editorconfig
+/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/Quiz/obj/Debug/net7.0/Quiz.AssemblyInfoInputs.cache
+/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/Quiz/obj/Debug/net7.0/Quiz.AssemblyInfo.cs
+/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/Quiz/obj/Debug/net7.0/Quiz.csproj.CoreCompileInputs.cache
+/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/Quiz/obj/Debug/net7.0/Quiz.dll
+/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/Quiz/obj/Debug/net7.0/refint/Quiz.dll
+/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/Quiz/obj/Debug/net7.0/Quiz.pdb
+/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/Quiz/obj/Debug/net7.0/Quiz.genruntimeconfig.cache
+/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/Quiz/obj/Debug/net7.0/ref/Quiz.dll
