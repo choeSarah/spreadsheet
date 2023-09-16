@@ -395,7 +395,7 @@ public class Formula
 
             return result;
         }
-        catch (InvalidOperationException e)
+        catch (InvalidOperationException)
         {
             throw new ArgumentException();
         }
@@ -422,7 +422,7 @@ public class Formula
 
             return result;
         }
-        catch (InvalidOperationException e)
+        catch (InvalidOperationException)
         {
             throw new ArgumentException();
         }
