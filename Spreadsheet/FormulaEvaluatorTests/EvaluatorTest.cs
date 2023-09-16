@@ -129,7 +129,7 @@ public class EvaluatorTest
     [TestCategory("17")]
     public void TestComplexAndParentheses()
     {
-        Assert.AreEqual(194, Evaluator.Evaluate("2+3*5+(3+4*8)*5+2", s => 0));
+        Assert.AreEqual(194, Evaluator.Evaluate("2+3*5+(3+4*8)*5+2", s => 0).ToString());
     }
 
     [TestMethod(), Timeout(5000)]

@@ -1,0 +1,12 @@
+/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/Formula/bin/Debug/net7.0/Formula.deps.json
+/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/Formula/bin/Debug/net7.0/Formula.dll
+/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/Formula/bin/Debug/net7.0/Formula.pdb
+/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/Formula/obj/Debug/net7.0/Formula.csproj.AssemblyReference.cache
+/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/Formula/obj/Debug/net7.0/Formula.GeneratedMSBuildEditorConfig.editorconfig
+/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/Formula/obj/Debug/net7.0/Formula.AssemblyInfoInputs.cache
+/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/Formula/obj/Debug/net7.0/Formula.AssemblyInfo.cs
+/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/Formula/obj/Debug/net7.0/Formula.csproj.CoreCompileInputs.cache
+/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/Formula/obj/Debug/net7.0/Formula.dll
+/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/Formula/obj/Debug/net7.0/refint/Formula.dll
+/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/Formula/obj/Debug/net7.0/Formula.pdb
+/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/Formula/obj/Debug/net7.0/ref/Formula.dll

@@ -14,8 +14,10 @@ class Program
     static void Main(string[] args)
     {
 
-        int result = Evaluator.Evaluate("2+5*7)", NoKnownVars);
-        Console.WriteLine(result);
+        //int result = Evaluator.Evaluate("-)", NoKnownVars);
+        //Console.WriteLine(result);
+
+        Console.WriteLine(9.0 / 0.0);
 
     }
 }
