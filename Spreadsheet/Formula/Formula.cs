@@ -97,6 +97,15 @@ public class Formula
                     equationList[i] = normalize(equationList[i]);
                 }
             }
+
+            if (IsNum(equationList[i]))
+            {
+                double number;
+                if (double.TryParse(equationList[i], out number))
+                {
+                    equationList[i] = number.ToString();
+                }
+            }
         }
 
         //Instantiating fields
