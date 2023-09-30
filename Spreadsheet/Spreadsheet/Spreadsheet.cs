@@ -633,7 +633,6 @@ public class Spreadsheet : AbstractSpreadsheet
     public override void Save(string filename)
     {
         string spreadsheetContent = JsonSerializer.Serialize(this);
-        Console.WriteLine(spreadsheetContent);
 
         try
         {
