@@ -13,7 +13,7 @@ public class SpreadsheetTests
     [ExpectedException(typeof(InvalidNameException))]
     public void TestEmptyGetContentsZERO()
     {
-        Spreadsheet s = new Spreadsheet("v1");
+        Spreadsheet s = new Spreadsheet();
         s.GetCellContents("1AA");
     }
 
@@ -21,7 +21,7 @@ public class SpreadsheetTests
     [TestCategory("3")]
     public void TestGetEmptyContentsZERO()
     {
-        Spreadsheet s = new Spreadsheet("v1");
+        Spreadsheet s = new Spreadsheet();
         Assert.AreEqual("", s.GetCellContents("A2"));
     }
 
@@ -31,7 +31,7 @@ public class SpreadsheetTests
     [ExpectedException(typeof(InvalidNameException))]
     public void TestSetInvalidNameDoubleZERO()
     {
-        Spreadsheet s = new Spreadsheet("v1");
+        Spreadsheet s = new Spreadsheet();
         s.SetContentsOfCell("1A1A", "1.5");
     }
 
@@ -39,7 +39,7 @@ public class SpreadsheetTests
     [TestCategory("6")]
     public void TestSimpleSetDoubleZERO()
     {
-        Spreadsheet s = new Spreadsheet("v1");
+        Spreadsheet s = new Spreadsheet();
         s.SetContentsOfCell("Z7", "1.5");
         Assert.AreEqual(1.5, 1e-9, (double)s.GetCellContents("Z7"));
     }
@@ -50,7 +50,7 @@ public class SpreadsheetTests
     [ExpectedException(typeof(InvalidNameException))]
     public void TestSetSimpleStringZERO()
     {
-        Spreadsheet s = new Spreadsheet("v1");
+        Spreadsheet s = new Spreadsheet();
         s.SetContentsOfCell("1AZ", "hello");
     }
 
@@ -58,7 +58,7 @@ public class SpreadsheetTests
     [TestCategory("10")]
     public void TestSetGetSimpleStringZERO()
     {
-        Spreadsheet s = new Spreadsheet("v1");
+        Spreadsheet s = new Spreadsheet();
         s.SetContentsOfCell("Z7", "hello");
         Assert.AreEqual("hello", s.GetCellContents("Z7"));
     }
@@ -69,7 +69,7 @@ public class SpreadsheetTests
     [ExpectedException(typeof(InvalidNameException))]
     public void TestSetSimpleFormZERO()
     {
-        Spreadsheet s = new Spreadsheet("v1");
+        Spreadsheet s = new Spreadsheet();
         s.SetContentsOfCell("1AZ", "=2");
     }
 
@@ -77,7 +77,7 @@ public class SpreadsheetTests
     [TestCategory("14")]
     public void TestSetGetFormZERO()
     {
-        Spreadsheet s = new Spreadsheet("v1");
+        Spreadsheet s = new Spreadsheet();
         s.SetContentsOfCell("Z7", "=3");
         Formula f = (Formula)s.GetCellContents("Z7");
         Assert.AreEqual(new Formula("3"), f);
@@ -87,14 +87,14 @@ public class SpreadsheetTests
     [TestMethod()]
     public void TestGetValueEmptyZERO()
     {
-        Spreadsheet s = new Spreadsheet("v1");
+        Spreadsheet s = new Spreadsheet();
         Assert.AreEqual("", s.GetCellValue("A3"));
     }
 
     [TestMethod()]
     public void TestGetValueDoubleZERO()
     {
-        Spreadsheet s = new Spreadsheet("v1");
+        Spreadsheet s = new Spreadsheet();
         s.SetContentsOfCell("A3", "5");
         Assert.AreEqual(5.0, s.GetCellValue("A3"));
     }
@@ -102,7 +102,7 @@ public class SpreadsheetTests
     [TestMethod()]
     public void TestGetValueStringZERO()
     {
-        Spreadsheet s = new Spreadsheet("v1");
+        Spreadsheet s = new Spreadsheet();
         s.SetContentsOfCell("A3", "hello");
         Assert.AreEqual("hello", s.GetCellValue("A3"));
     }
@@ -110,7 +110,7 @@ public class SpreadsheetTests
     [TestMethod()]
     public void TestGetValueFormulaNoOprNoVarZERO()
     {
-        Spreadsheet s = new Spreadsheet("v1");
+        Spreadsheet s = new Spreadsheet();
         s.SetContentsOfCell("A3", "=5");
         Assert.AreEqual(5.0, s.GetCellValue("A3"));
     }
@@ -118,7 +118,7 @@ public class SpreadsheetTests
     [TestMethod()]
     public void TestGetValueFormulaNoOprYesVarZERO()
     {
-        Spreadsheet s = new Spreadsheet("v1");
+        Spreadsheet s = new Spreadsheet();
         s.SetContentsOfCell("A3", "=5");
         s.SetContentsOfCell("A2", "=A3");
         Assert.AreEqual(5.0, s.GetCellValue("A2"));
@@ -127,7 +127,7 @@ public class SpreadsheetTests
     [TestMethod()]
     public void TestGetValueFormulaYesOprYesVarZERO()
     {
-        Spreadsheet s = new Spreadsheet("v1");
+        Spreadsheet s = new Spreadsheet();
         s.SetContentsOfCell("A3", "=5");
         s.SetContentsOfCell("A2", "=5+A3");
         Assert.AreEqual(10.0, s.GetCellValue("A2"));
@@ -136,7 +136,7 @@ public class SpreadsheetTests
     [TestMethod()]
     public void TestGetValueFormulaYesOprNoVarZERO()
     {
-        Spreadsheet s = new Spreadsheet("v1");
+        Spreadsheet s = new Spreadsheet();
         s.SetContentsOfCell("A2", "=5*9");
         Assert.AreEqual(45.0, s.GetCellValue("A2"));
     }
@@ -147,7 +147,7 @@ public class SpreadsheetTests
     [ExpectedException(typeof(CircularException))]
     public void TestSimpleCircularZERO()
     {
-        Spreadsheet s = new Spreadsheet("v1");
+        Spreadsheet s = new Spreadsheet();
         s.SetContentsOfCell("A1", "=A2");
         s.SetContentsOfCell("A2", "=A1");
     }
@@ -157,7 +157,7 @@ public class SpreadsheetTests
     [ExpectedException(typeof(CircularException))]
     public void TestComplexCircularZERO()
     {
-        Spreadsheet s = new Spreadsheet("v1");
+        Spreadsheet s = new Spreadsheet();
         s.SetContentsOfCell("A1", "=A2+A3");
         s.SetContentsOfCell("A3", "=A4+A5");
         s.SetContentsOfCell("A5", "=A6+A7");
@@ -169,7 +169,7 @@ public class SpreadsheetTests
     [ExpectedException(typeof(CircularException))]
     public void TestUndoCircularZERO()
     {
-        Spreadsheet s = new Spreadsheet("v1");
+        Spreadsheet s = new Spreadsheet();
         try
         {
             s.SetContentsOfCell("A1", "=A2+A3");
@@ -189,7 +189,7 @@ public class SpreadsheetTests
     [ExpectedException(typeof(CircularException))]
     public void TestUndoCellsCircularZERO()
     {
-        Spreadsheet s = new Spreadsheet("v1");
+        Spreadsheet s = new Spreadsheet();
         try
         {
             s.SetContentsOfCell("A1", "=A2");
@@ -208,7 +208,7 @@ public class SpreadsheetTests
     [TestCategory("18")]
     public void TestEmptyNamesZERO()
     {
-        Spreadsheet s = new Spreadsheet("v1");
+        Spreadsheet s = new Spreadsheet();
         Assert.IsFalse(s.GetNamesOfAllNonemptyCells().GetEnumerator().MoveNext());
     }
 
@@ -216,7 +216,7 @@ public class SpreadsheetTests
     [TestCategory("19")]
     public void TestExplicitEmptySetZERO()
     {
-        Spreadsheet s = new Spreadsheet("v1");
+        Spreadsheet s = new Spreadsheet();
         s.SetContentsOfCell("B1", "");
         Assert.IsFalse(s.GetNamesOfAllNonemptyCells().GetEnumerator().MoveNext());
     }
@@ -225,7 +225,7 @@ public class SpreadsheetTests
     [TestCategory("20")]
     public void TestSimpleNamesStringZERO()
     {
-        Spreadsheet s = new Spreadsheet("v1");
+        Spreadsheet s = new Spreadsheet();
         s.SetContentsOfCell("B1", "hello");
         Assert.IsTrue(new HashSet<string>(s.GetNamesOfAllNonemptyCells()).SetEquals(new HashSet<string>() { "B1" }));
     }
@@ -234,7 +234,7 @@ public class SpreadsheetTests
     [TestCategory("21")]
     public void TestSimpleNamesDoubleZERO()
     {
-        Spreadsheet s = new Spreadsheet("v1");
+        Spreadsheet s = new Spreadsheet();
         s.SetContentsOfCell("B1", "52.25");
         Assert.IsTrue(new HashSet<string>(s.GetNamesOfAllNonemptyCells()).SetEquals(new HashSet<string>() { "B1" }));
     }
@@ -243,7 +243,7 @@ public class SpreadsheetTests
     [TestCategory("22")]
     public void TestSimpleNamesFormulaZERO()
     {
-        Spreadsheet s = new Spreadsheet("v1");
+        Spreadsheet s = new Spreadsheet();
         s.SetContentsOfCell("B1", "=3.5");
         Assert.IsTrue(new HashSet<string>(s.GetNamesOfAllNonemptyCells()).SetEquals(new HashSet<string>() { "B1" }));
     }
@@ -252,7 +252,7 @@ public class SpreadsheetTests
     [TestCategory("23")]
     public void TestMixedNamesZERO()
     {
-        Spreadsheet s = new Spreadsheet("v1");
+        Spreadsheet s = new Spreadsheet();
         s.SetContentsOfCell("A1", "17.2");
         s.SetContentsOfCell("C1", "hello");
         s.SetContentsOfCell("B1", "=3.5");
@@ -264,7 +264,7 @@ public class SpreadsheetTests
     [TestCategory("24")]
     public void TestSetSingletonDoubleZERO()
     {
-        Spreadsheet s = new Spreadsheet("v1");
+        Spreadsheet s = new Spreadsheet();
         s.SetContentsOfCell("B1", "hello");
         s.SetContentsOfCell("C1", "=5");
         Assert.IsTrue(s.SetContentsOfCell("A1", "17.2").SequenceEqual(new List<string>() { "A1" }));
@@ -274,7 +274,7 @@ public class SpreadsheetTests
     [TestCategory("25")]
     public void TestSetSingletonStringZEROZERO()
     {
-        Spreadsheet s = new Spreadsheet("v1");
+        Spreadsheet s = new Spreadsheet();
         s.SetContentsOfCell("A1", "17.2");
         s.SetContentsOfCell("C1", "=5");
         Assert.IsTrue(s.SetContentsOfCell("B1", "hello").SequenceEqual(new List<string>() { "B1" }));
@@ -284,7 +284,7 @@ public class SpreadsheetTests
     [TestCategory("26")]
     public void TestSetSingletonFormulaZERO()
     {
-        Spreadsheet s = new Spreadsheet("v1");
+        Spreadsheet s = new Spreadsheet();
         s.SetContentsOfCell("A1", "17.2");
         s.SetContentsOfCell("B1", "hello");
         Assert.IsTrue(s.SetContentsOfCell("C1", "=5").SequenceEqual(new List<string>() { "C1" }));
@@ -294,7 +294,7 @@ public class SpreadsheetTests
     [TestCategory("27")]
     public void TestSetChainZERO()
     {
-        Spreadsheet s = new Spreadsheet("v1");
+        Spreadsheet s = new Spreadsheet();
         s.SetContentsOfCell("A1", "=A2+A3");
         s.SetContentsOfCell("A2", "6");
         s.SetContentsOfCell("A3", "=A2+A4");
@@ -307,7 +307,7 @@ public class SpreadsheetTests
     [TestCategory("28")]
     public void TestChangeFtoDZERO()
     {
-        Spreadsheet s = new Spreadsheet("v1");
+        Spreadsheet s = new Spreadsheet();
         s.SetContentsOfCell("A1", "=A2+A3");
         s.SetContentsOfCell("A1", "2.5");
         Assert.AreEqual(2.5, (double)s.GetCellContents("A1"), 1e-9);
@@ -317,7 +317,7 @@ public class SpreadsheetTests
     [TestCategory("29")]
     public void TestChangeFtoSZERO()
     {
-        Spreadsheet s = new Spreadsheet("v1");
+        Spreadsheet s = new Spreadsheet();
         s.SetContentsOfCell("A1", "=A2+A3");
         s.SetContentsOfCell("A1", "Hello");
         Assert.AreEqual("Hello", (string)s.GetCellContents("A1"));
@@ -328,7 +328,7 @@ public class SpreadsheetTests
     [TestCategory("30")]
     public void TestChangeStoFZERO()
     {
-        Spreadsheet s = new Spreadsheet("v1");
+        Spreadsheet s = new Spreadsheet();
         s.SetContentsOfCell("A1", "Hello");
         s.SetContentsOfCell("A1", "=23");
         Assert.AreEqual(new Formula("23"), (Formula)s.GetCellContents("A1"));
@@ -339,13 +339,13 @@ public class SpreadsheetTests
     [TestMethod()]
     public void TestSaveSingleStringZERO()
     {
-        Spreadsheet s1 = new Spreadsheet("v1");
+        Spreadsheet s1 = new Spreadsheet();
         s1.SetContentsOfCell("A1", "Hello");
 
         s1.Save("test1.txt");
 
         Spreadsheet anotherOne = new Spreadsheet("/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/SpreadsheetTests/bin/Debug/net7.0/test1.txt",
-            s => true, s => s.ToUpper(), "v1");
+            s => true, s => s.ToUpper(), "default");
 
         List<string> expected = new List<string>();
         List<string> actual = anotherOne.GetNamesOfAllNonemptyCells().ToList();
@@ -359,13 +359,13 @@ public class SpreadsheetTests
     [TestMethod()]
     public void TestSaveSingleDoubleZERO()
     {
-        Spreadsheet s1 = new Spreadsheet("v1");
+        Spreadsheet s1 = new Spreadsheet();
         s1.SetContentsOfCell("A1", "2");
 
         s1.Save("test1.txt");
 
         Spreadsheet anotherOne = new Spreadsheet("/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/SpreadsheetTests/bin/Debug/net7.0/test1.txt",
-            s => true, s => s.ToUpper(), "v1");
+            s => true, s => s.ToUpper(), "default");
 
         List<string> expected = new List<string>();
         List<string> actual = anotherOne.GetNamesOfAllNonemptyCells().ToList();
@@ -379,13 +379,13 @@ public class SpreadsheetTests
     [TestMethod()]
     public void TestSaveSingleFormulaNoVarNoOprZERO()
     {
-        Spreadsheet s1 = new Spreadsheet("v1");
+        Spreadsheet s1 = new Spreadsheet();
         s1.SetContentsOfCell("A1", "=3");
 
         s1.Save("test1.txt");
 
         Spreadsheet anotherOne = new Spreadsheet("/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/SpreadsheetTests/bin/Debug/net7.0/test1.txt",
-            s => true, s => s.ToUpper(), "v1");
+            s => true, s => s.ToUpper(), "default");
 
         List<string> expected = new List<string>();
         List<string> actual = anotherOne.GetNamesOfAllNonemptyCells().ToList();
@@ -401,13 +401,13 @@ public class SpreadsheetTests
     [TestMethod()]
     public void TestSaveSingleFormulaNoVarYesOprZERO()
     {
-        Spreadsheet s1 = new Spreadsheet("v1");
+        Spreadsheet s1 = new Spreadsheet();
         s1.SetContentsOfCell("A1", "=3+3");
 
         s1.Save("test1.txt");
 
         Spreadsheet anotherOne = new Spreadsheet("/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/SpreadsheetTests/bin/Debug/net7.0/test1.txt",
-            s => true, s => s.ToUpper(), "v1");
+            s => true, s => s.ToUpper(), "default");
 
         List<string> expected = new List<string>();
         List<string> actual = anotherOne.GetNamesOfAllNonemptyCells().ToList();
@@ -423,7 +423,7 @@ public class SpreadsheetTests
     [TestMethod()]
     public void TestSaveSingleFormulaYesVarNoOprZERO()
     {
-        Spreadsheet s1 = new Spreadsheet("v1");
+        Spreadsheet s1 = new Spreadsheet();
         s1.SetContentsOfCell("A1", "3");
         s1.SetContentsOfCell("A2", "=A1");
 
@@ -431,7 +431,7 @@ public class SpreadsheetTests
         s1.Save("test1.txt");
 
         Spreadsheet anotherOne = new Spreadsheet("/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/SpreadsheetTests/bin/Debug/net7.0/test1.txt",
-            s => true, s => s.ToUpper(), "v1");
+            s => true, s => s.ToUpper(), "default");
 
         List<string> expected = new List<string>();
         List<string> actual = anotherOne.GetNamesOfAllNonemptyCells().ToList();
@@ -449,7 +449,7 @@ public class SpreadsheetTests
     [TestMethod()]
     public void TestSaveSingleFormulaYesVarYesOprZERO()
     {
-        Spreadsheet s1 = new Spreadsheet("v1");
+        Spreadsheet s1 = new Spreadsheet();
         s1.SetContentsOfCell("A1", "3");
         s1.SetContentsOfCell("A2", "=A1+3");
 
@@ -457,7 +457,7 @@ public class SpreadsheetTests
         s1.Save("test1.txt");
 
         Spreadsheet anotherOne = new Spreadsheet("/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/SpreadsheetTests/bin/Debug/net7.0/test1.txt",
-            s => true, s => s.ToUpper(), "v1");
+            s => true, s => s.ToUpper(), "default");
 
         List<string> expected = new List<string>();
         List<string> actual = anotherOne.GetNamesOfAllNonemptyCells().ToList();
@@ -476,7 +476,7 @@ public class SpreadsheetTests
     [ExpectedException(typeof(SpreadsheetReadWriteException))]
     public void TestSaveDeserializeVersionZERO()
     {
-        Spreadsheet s1 = new Spreadsheet("v1");
+        Spreadsheet s1 = new Spreadsheet();
         s1.SetContentsOfCell("A1", "Hello");
 
         s1.Save("test1.txt");
@@ -492,7 +492,7 @@ public class SpreadsheetTests
     {
         try
         {
-            Spreadsheet s1 = new Spreadsheet("v1");
+            Spreadsheet s1 = new Spreadsheet();
             s1.SetContentsOfCell("1A", "Hello");
             s1.Save("test1.txt");
         }
@@ -502,7 +502,7 @@ public class SpreadsheetTests
         }
 
         Spreadsheet anotherOne = new Spreadsheet("/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/test1.txt",
-            s => true, s => s.ToUpper(), "v1");
+            s => true, s => s.ToUpper(), "default");
     }
 
     [TestMethod()]
@@ -511,7 +511,7 @@ public class SpreadsheetTests
     {
         try
         {
-            Spreadsheet s1 = new Spreadsheet("v1");
+            Spreadsheet s1 = new Spreadsheet();
             s1.SetContentsOfCell("A1", "=3++");
             s1.Save("test1.txt");
         }
@@ -521,7 +521,7 @@ public class SpreadsheetTests
         }
 
         Spreadsheet anotherOne = new Spreadsheet("/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/test1.txt",
-            s => true, s => s.ToUpper(), "v1");
+            s => true, s => s.ToUpper(), "default");
     }
 
     [TestMethod()]
@@ -530,7 +530,7 @@ public class SpreadsheetTests
     {
         try
         {
-            Spreadsheet s1 = new Spreadsheet("v1");
+            Spreadsheet s1 = new Spreadsheet();
             s1.SetContentsOfCell("A1", "=A2");
             s1.SetContentsOfCell("A2", "=A1");
 
@@ -542,20 +542,20 @@ public class SpreadsheetTests
         }
 
         Spreadsheet anotherOne = new Spreadsheet("/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/test1.txt",
-            s => true, s => s.ToUpper(), "v1");
+            s => true, s => s.ToUpper(), "default");
     }
 
     [TestMethod()]
     [ExpectedException(typeof(SpreadsheetReadWriteException))]
     public void TestDeserializePathDNEZERO()
     {
-        Spreadsheet s1 = new Spreadsheet("v1");
+        Spreadsheet s1 = new Spreadsheet();
         s1.SetContentsOfCell("A1", "Hello");
 
         s1.Save("test1.txt");
 
         Spreadsheet anotherOne = new Spreadsheet("/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/test1.txt",
-            s => true, s => s.ToUpper(), "v1");
+            s => true, s => s.ToUpper(), "default");
 
     }
 
@@ -564,7 +564,7 @@ public class SpreadsheetTests
     [TestCategory("31")]
     public void TestStress1ZERO()
     {
-        Spreadsheet s = new Spreadsheet("v1");
+        Spreadsheet s = new Spreadsheet();
         s.SetContentsOfCell("A1", "=B1+B2");
         s.SetContentsOfCell("B1", "=C1-C2");
         s.SetContentsOfCell("B2", "=C3*C4");
@@ -608,7 +608,7 @@ public class SpreadsheetTests
     [TestCategory("35")]
     public void TestStress2ZERO()
     {
-        Spreadsheet s = new Spreadsheet("v1");
+        Spreadsheet s = new Spreadsheet();
         ISet<String> cells = new HashSet<string>();
         for (int i = 1; i < 200; i++)
         {
@@ -639,7 +639,7 @@ public class SpreadsheetTests
     [TestCategory("39")]
     public void TestStress3ZERO()
     {
-        Spreadsheet s = new Spreadsheet("v1");
+        Spreadsheet s = new Spreadsheet();
         for (int i = 1; i < 200; i++)
         {
             s.SetContentsOfCell("A" + i, "=A" + (i + 1));
@@ -677,7 +677,7 @@ public class SpreadsheetTests
     [TestCategory("43")]
     public void TestStress4ZERO()
     {
-        Spreadsheet s = new Spreadsheet("v1");
+        Spreadsheet s = new Spreadsheet();
         for (int i = 0; i < 500; i++)
         {
             s.SetContentsOfCell("A1" + i, "=A1" + (i + 1));
@@ -1206,7 +1206,7 @@ public class SpreadsheetTests
     {
         try
         {
-            Spreadsheet s1 = new Spreadsheet("v1");
+            Spreadsheet s1 = new Spreadsheet(s => true, s => s.ToUpper(), "v1");
             s1.SetContentsOfCell("A1", "=3++");
             s1.Save("test1.txt");
         }
@@ -1225,7 +1225,7 @@ public class SpreadsheetTests
     {
         try
         {
-            Spreadsheet s1 = new Spreadsheet("v1");
+            Spreadsheet s1 = new Spreadsheet(s => true, s => s.ToUpper(), "v1");
             s1.SetContentsOfCell("A1", "=A2");
             s1.SetContentsOfCell("A2", "=A1");
 

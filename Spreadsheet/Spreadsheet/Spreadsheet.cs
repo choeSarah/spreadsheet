@@ -163,7 +163,7 @@ public class Spreadsheet : AbstractSpreadsheet
 
     //Creates an empty spreadsheet that imposes no extra validity conditions,
     //normalizes every cell name to itself, and has version "default".
-    public Spreadsheet(string version) : base(version)
+    public Spreadsheet() : base("default")
     {
         this.pathName = "";
         this.normalizer = s => s;
