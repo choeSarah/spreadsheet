@@ -211,30 +211,36 @@ public class Spreadsheet : AbstractSpreadsheet
             try
             {
                 Spreadsheet? rebuild = JsonSerializer.Deserialize<Spreadsheet>(fileContent);
-                Dictionary<string, Cell>? rebuildDictionary = rebuild.CellToName;
 
-                if (this.version != rebuild.Version)
+                if (rebuild != null)
                 {
-                    throw new SpreadsheetReadWriteException("Saved version does not match given version");
-                }
+                    Dictionary<string, Cell>? rebuildDictionary = rebuild.CellToName;
 
-                foreach (string s in rebuildDictionary.Keys)
-                {
-                    if (!IsLegalName(s) | !this.validator(s))
+                    if (this.version != rebuild.Version)
                     {
-                        throw new SpreadsheetReadWriteException("Input includes an invalid name");
-
+                        throw new SpreadsheetReadWriteException("Saved version does not match given version");
                     }
 
-                    string newContent = rebuildDictionary[s].StringForm;
-                    try
+                    foreach (string s in rebuildDictionary.Keys)
                     {
-                        SetContentsOfCell(s, newContent);
-                    } catch (CircularException)
-                    {
-                        throw new SpreadsheetReadWriteException("Input includes a circular dependency or an invalid formula");
+                        if (!IsLegalName(s) | !this.validator(s))
+                        {
+                            throw new SpreadsheetReadWriteException("Input includes an invalid name");
+
+                        }
+
+                        string newContent = rebuildDictionary[s].StringForm;
+                        try
+                        {
+                            SetContentsOfCell(s, newContent);
+                        }
+                        catch (CircularException)
+                        {
+                            throw new SpreadsheetReadWriteException("Input includes a circular dependency or an invalid formula");
+                        }
                     }
                 }
+
 
             } catch (Exception)
             {
