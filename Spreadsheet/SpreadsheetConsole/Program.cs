@@ -4,15 +4,8 @@ using System.Xml.Linq;
 using SpreadsheetUtilities;
 using SS;
 
-//try
-//{
-//    Spreadsheet s1 = new Spreadsheet("v1");
-//    s1.SetContentsOfCell("1A", "Hello");
-//    s1.Save("test1.txt");
-//} catch (InvalidNameException)
-//{
+Spreadsheet s1 = new Spreadsheet();
+s1.SetContentsOfCell("A1", "3");
+s1.SetContentsOfCell("A2", "=A1");
 
-//}
-
-//Spreadsheet anotherOne = new Spreadsheet("/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/test1.txt",
-//    s => true, s => s.ToUpper(), "v1");
+s1.Save("save1.txt");

@@ -336,152 +336,171 @@ public class SpreadsheetTests
 
     }
 
-    //[TestMethod()]
-    //public void TestSaveSingleStringZERO()
-    //{
-    //    Spreadsheet s1 = new Spreadsheet();
-    //    s1.SetContentsOfCell("A1", "Hello");
+    [TestMethod()]
+    public void TestSaveSingleStringZERO()
+    {
+        string sheet = "{\"Cells\":{\"A1\":{\"StringForm\":\"Hello\"}},\"Version\":\"default\"}";
+        File.WriteAllText("sstest.txt", sheet);
 
-    //    s1.Save("test1.txt");
+        //Spreadsheet s1 = new Spreadsheet();
+        //s1.SetContentsOfCell("A1", "Hello");
 
-    //    Spreadsheet anotherOne = new Spreadsheet("/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/SpreadsheetTests/bin/Debug/net7.0/test1.txt",
-    //        s => true, s => s.ToUpper(), "default");
+        //s1.Save("test1.txt");
 
-    //    List<string> expected = new List<string>();
-    //    List<string> actual = anotherOne.GetNamesOfAllNonemptyCells().ToList();
-    //    expected.Add("A1");
+        Spreadsheet anotherOne = new Spreadsheet("sstest.txt",
+            s => true, s => s.ToUpper(), "default");
 
-    //    Assert.AreEqual("Hello", (string)anotherOne.GetCellContents("A1"));
-    //    CollectionAssert.AreEqual(expected, actual);
-        
-    //}
+        List<string> expected = new List<string>();
+        List<string> actual = anotherOne.GetNamesOfAllNonemptyCells().ToList();
+        expected.Add("A1");
 
-    //[TestMethod()]
-    //public void TestSaveSingleDoubleZERO()
-    //{
-    //    Spreadsheet s1 = new Spreadsheet();
-    //    s1.SetContentsOfCell("A1", "2");
+        Assert.AreEqual("Hello", (string)anotherOne.GetCellContents("A1"));
+        CollectionAssert.AreEqual(expected, actual);
 
-    //    s1.Save("test1.txt");
+    }
 
-    //    Spreadsheet anotherOne = new Spreadsheet("/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/SpreadsheetTests/bin/Debug/net7.0/test1.txt",
-    //        s => true, s => s.ToUpper(), "default");
+    [TestMethod()]
+    public void TestSaveSingleDoubleZERO()
+    {
+        //Spreadsheet s1 = new Spreadsheet();
+        //s1.SetContentsOfCell("A1", "2");
 
-    //    List<string> expected = new List<string>();
-    //    List<string> actual = anotherOne.GetNamesOfAllNonemptyCells().ToList();
-    //    expected.Add("A1");
+        //s1.Save("test1.txt");
 
-    //    Assert.AreEqual(2.0, (double)anotherOne.GetCellContents("A1"));
-    //    CollectionAssert.AreEqual(expected, actual);
+        string sheet = "{\"Cells\":{\"A1\":{\"StringForm\":\"2\"}},\"Version\":\"default\"}";
+        File.WriteAllText("sstest.txt", sheet);
 
-    //}
+        Spreadsheet anotherOne = new Spreadsheet("sstest.txt",
+            s => true, s => s.ToUpper(), "default");
 
-    //[TestMethod()]
-    //public void TestSaveSingleFormulaNoVarNoOprZERO()
-    //{
-    //    Spreadsheet s1 = new Spreadsheet();
-    //    s1.SetContentsOfCell("A1", "=3");
+        List<string> expected = new List<string>();
+        List<string> actual = anotherOne.GetNamesOfAllNonemptyCells().ToList();
+        expected.Add("A1");
 
-    //    s1.Save("test1.txt");
+        Assert.AreEqual(2.0, (double)anotherOne.GetCellContents("A1"));
+        CollectionAssert.AreEqual(expected, actual);
 
-    //    Spreadsheet anotherOne = new Spreadsheet("/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/SpreadsheetTests/bin/Debug/net7.0/test1.txt",
-    //        s => true, s => s.ToUpper(), "default");
+    }
 
-    //    List<string> expected = new List<string>();
-    //    List<string> actual = anotherOne.GetNamesOfAllNonemptyCells().ToList();
-    //    expected.Add("A1");
+    [TestMethod()]
+    public void TestSaveSingleFormulaNoVarNoOprZERO()
+    {
+        //Spreadsheet s1 = new Spreadsheet();
+        //s1.SetContentsOfCell("A1", "=3");
 
-    //    Assert.AreEqual(new Formula("3"), (Formula)anotherOne.GetCellContents("A1"));
-    //    Assert.AreEqual(3.0, anotherOne.GetCellValue("A1"));
+        //s1.Save("test1.txt");
 
-    //    CollectionAssert.AreEqual(expected, actual);
+        string sheet = "{\"Cells\":{\"A1\":{\"StringForm\":\"=3\"}},\"Version\":\"default\"}";
+        File.WriteAllText("sstest.txt", sheet);
 
-    //}
+        Spreadsheet anotherOne = new Spreadsheet("sstest.txt",
+            s => true, s => s.ToUpper(), "default");
 
-    //[TestMethod()]
-    //public void TestSaveSingleFormulaNoVarYesOprZERO()
-    //{
-    //    Spreadsheet s1 = new Spreadsheet();
-    //    s1.SetContentsOfCell("A1", "=3+3");
+        List<string> expected = new List<string>();
+        List<string> actual = anotherOne.GetNamesOfAllNonemptyCells().ToList();
+        expected.Add("A1");
 
-    //    s1.Save("test1.txt");
+        Assert.AreEqual(new Formula("3"), (Formula)anotherOne.GetCellContents("A1"));
+        Assert.AreEqual(3.0, anotherOne.GetCellValue("A1"));
 
-    //    Spreadsheet anotherOne = new Spreadsheet("/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/SpreadsheetTests/bin/Debug/net7.0/test1.txt",
-    //        s => true, s => s.ToUpper(), "default");
+        CollectionAssert.AreEqual(expected, actual);
 
-    //    List<string> expected = new List<string>();
-    //    List<string> actual = anotherOne.GetNamesOfAllNonemptyCells().ToList();
-    //    expected.Add("A1");
+    }
 
-    //    Assert.AreEqual(new Formula("3+3"), (Formula)anotherOne.GetCellContents("A1"));
-    //    Assert.AreEqual(6.0, anotherOne.GetCellValue("A1"));
+    [TestMethod()]
+    public void TestSaveSingleFormulaNoVarYesOprZERO()
+    {
+        //Spreadsheet s1 = new Spreadsheet();
+        //s1.SetContentsOfCell("A1", "=3+3");
 
-    //    CollectionAssert.AreEqual(expected, actual);
+        //s1.Save("test1.txt");
 
-    //}
+        string sheet = "{\"Cells\":{\"A1\":{\"StringForm\":\"=3+3\"}},\"Version\":\"default\"}";
+        File.WriteAllText("sstest.txt", sheet);
 
-    //[TestMethod()]
-    //public void TestSaveSingleFormulaYesVarNoOprZERO()
-    //{
-    //    Spreadsheet s1 = new Spreadsheet();
-    //    s1.SetContentsOfCell("A1", "3");
-    //    s1.SetContentsOfCell("A2", "=A1");
+        Spreadsheet anotherOne = new Spreadsheet("sstest.txt",
+            s => true, s => s.ToUpper(), "default");
 
+        List<string> expected = new List<string>();
+        List<string> actual = anotherOne.GetNamesOfAllNonemptyCells().ToList();
+        expected.Add("A1");
 
-    //    s1.Save("test1.txt");
+        Assert.AreEqual(new Formula("3+3"), (Formula)anotherOne.GetCellContents("A1"));
+        Assert.AreEqual(6.0, anotherOne.GetCellValue("A1"));
 
-    //    Spreadsheet anotherOne = new Spreadsheet("/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/SpreadsheetTests/bin/Debug/net7.0/test1.txt",
-    //        s => true, s => s.ToUpper(), "default");
+        CollectionAssert.AreEqual(expected, actual);
 
-    //    List<string> expected = new List<string>();
-    //    List<string> actual = anotherOne.GetNamesOfAllNonemptyCells().ToList();
-    //    expected.Add("A1");
-    //    expected.Add("A2");
+    }
 
+    [TestMethod()]
+    public void TestSaveSingleFormulaYesVarNoOprZERO()
+    {
+        //Spreadsheet s1 = new Spreadsheet();
+        //s1.SetContentsOfCell("A1", "3");
+        //s1.SetContentsOfCell("A2", "=A1");
 
-    //    Assert.AreEqual(new Formula("A1"), (Formula)anotherOne.GetCellContents("A2"));
-    //    Assert.AreEqual(3.0, anotherOne.GetCellValue("A2"));
+        //s1.Save("test1.txt");
 
-    //    CollectionAssert.AreEqual(expected, actual);
+        string sheet = "{\"Cells\":{\"A1\":{\"StringForm\":\"3\"},\"A2\":{\"StringForm\":\"=A1\"}},\"Version\":\"default\"}";
+        File.WriteAllText("sstest.txt", sheet);
 
-    //}
+        Spreadsheet anotherOne = new Spreadsheet("sstest.txt",
+            s => true, s => s.ToUpper(), "default");
 
-    //[TestMethod()]
-    //public void TestSaveSingleFormulaYesVarYesOprZERO()
-    //{
-    //    Spreadsheet s1 = new Spreadsheet();
-    //    s1.SetContentsOfCell("A1", "3");
-    //    s1.SetContentsOfCell("A2", "=A1+3");
-
-
-    //    s1.Save("test1.txt");
-
-    //    Spreadsheet anotherOne = new Spreadsheet("/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/SpreadsheetTests/bin/Debug/net7.0/test1.txt",
-    //        s => true, s => s.ToUpper(), "default");
-
-    //    List<string> expected = new List<string>();
-    //    List<string> actual = anotherOne.GetNamesOfAllNonemptyCells().ToList();
-    //    expected.Add("A1");
-    //    expected.Add("A2");
+        List<string> expected = new List<string>();
+        List<string> actual = anotherOne.GetNamesOfAllNonemptyCells().ToList();
+        expected.Add("A1");
+        expected.Add("A2");
 
 
-    //    Assert.AreEqual(new Formula("A1+3"), (Formula)anotherOne.GetCellContents("A2"));
-    //    Assert.AreEqual(6.0, anotherOne.GetCellValue("A2"));
+        Assert.AreEqual(new Formula("A1"), (Formula)anotherOne.GetCellContents("A2"));
+        Assert.AreEqual(3.0, anotherOne.GetCellValue("A2"));
 
-    //    CollectionAssert.AreEqual(expected, actual);
+        CollectionAssert.AreEqual(expected, actual);
 
-    //}
+    }
+
+    [TestMethod()]
+    public void TestSaveSingleFormulaYesVarYesOprZERO()
+    {
+        //Spreadsheet s1 = new Spreadsheet();
+        //s1.SetContentsOfCell("A1", "3");
+        //s1.SetContentsOfCell("A2", "=A1+3");
+
+        //s1.Save("test1.txt");
+
+        string sheet = "{\"Cells\":{\"A1\":{\"StringForm\":\"3\"},\"A2\":{\"StringForm\":\"=A1+3\"}},\"Version\":\"default\"}";
+        File.WriteAllText("sstest.txt", sheet);
+
+        Spreadsheet anotherOne = new Spreadsheet("sstest.txt",
+            s => true, s => s.ToUpper(), "default");
+
+        List<string> expected = new List<string>();
+        List<string> actual = anotherOne.GetNamesOfAllNonemptyCells().ToList();
+        expected.Add("A1");
+        expected.Add("A2");
+
+
+        Assert.AreEqual(new Formula("A1+3"), (Formula)anotherOne.GetCellContents("A2"));
+        Assert.AreEqual(6.0, anotherOne.GetCellValue("A2"));
+
+        CollectionAssert.AreEqual(expected, actual);
+
+    }
 
     [TestMethod()]
     [ExpectedException(typeof(SpreadsheetReadWriteException))]
     public void TestSaveDeserializeVersionZERO()
     {
-        Spreadsheet s1 = new Spreadsheet();
-        s1.SetContentsOfCell("A1", "Hello");
+        //Spreadsheet s1 = new Spreadsheet();
+        //s1.SetContentsOfCell("A1", "Hello");
 
-        s1.Save("test1.txt");
+        //s1.Save("test1.txt");
 
-        Spreadsheet anotherOne = new Spreadsheet("/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/SpreadsheetTests/bin/Debug/net7.0/test1.txt",
+        string sheet = "{\"Cells\":{\"A1\":{\"StringForm\":\"3\"},\"A2\":{\"StringForm\":\"=A1+3\"}},\"Version\":\"default\"}";
+        File.WriteAllText("sstest.txt", sheet);
+
+        Spreadsheet anotherOne = new Spreadsheet("sstest.txt",
             s => true, s => s.ToUpper(), "v2");
 
     }
@@ -490,18 +509,11 @@ public class SpreadsheetTests
     [ExpectedException(typeof(SpreadsheetReadWriteException))]
     public void TestSaveInvalidNameZERO()
     {
-        try
-        {
-            Spreadsheet s1 = new Spreadsheet();
-            s1.SetContentsOfCell("1A", "Hello");
-            s1.Save("test1.txt");
-        }
-        catch (InvalidNameException)
-        {
 
-        }
+        string sheet = "{\"Cells\":{\"1A\":{\"StringForm\":\"3\"},\"A2\":{\"StringForm\":\"=A1+3\"}},\"Version\":\"default\"}";
+        File.WriteAllText("sstest.txt", sheet);
 
-        Spreadsheet anotherOne = new Spreadsheet("/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/test1.txt",
+        Spreadsheet anotherOne = new Spreadsheet("sstest.txt",
             s => true, s => s.ToUpper(), "default");
     }
 
@@ -509,18 +521,10 @@ public class SpreadsheetTests
     [ExpectedException(typeof(SpreadsheetReadWriteException))]
     public void TestSaveInvalidFormulaZERO()
     {
-        try
-        {
-            Spreadsheet s1 = new Spreadsheet();
-            s1.SetContentsOfCell("A1", "=3++");
-            s1.Save("test1.txt");
-        }
-        catch (FormulaFormatException)
-        {
+        string sheet = "{\"Cells\":{\"A1\":{\"StringForm\":\"=3++\"},\"A2\":{\"StringForm\":\"=A1+3\"}},\"Version\":\"default\"}";
+        File.WriteAllText("sstest.txt", sheet);
 
-        }
-
-        Spreadsheet anotherOne = new Spreadsheet("/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/test1.txt",
+        Spreadsheet anotherOne = new Spreadsheet("sstest.txt",
             s => true, s => s.ToUpper(), "default");
     }
 
@@ -528,20 +532,10 @@ public class SpreadsheetTests
     [ExpectedException(typeof(SpreadsheetReadWriteException))]
     public void TestSaveCircularDependenctZERO()
     {
-        try
-        {
-            Spreadsheet s1 = new Spreadsheet();
-            s1.SetContentsOfCell("A1", "=A2");
-            s1.SetContentsOfCell("A2", "=A1");
+        string sheet = "{\"Cells\":{\"A1\":{\"StringForm\":\"=A2\"},\"A2\":{\"StringForm\":\"=A1+3\"}},\"Version\":\"default\"}";
+        File.WriteAllText("sstest.txt", sheet);
 
-            s1.Save("test1.txt");
-        }
-        catch (CircularException)
-        {
-
-        }
-
-        Spreadsheet anotherOne = new Spreadsheet("/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/test1.txt",
+        Spreadsheet anotherOne = new Spreadsheet("sstest.txt",
             s => true, s => s.ToUpper(), "default");
     }
 
@@ -549,13 +543,8 @@ public class SpreadsheetTests
     [ExpectedException(typeof(SpreadsheetReadWriteException))]
     public void TestDeserializePathDNEZERO()
     {
-        Spreadsheet s1 = new Spreadsheet();
-        s1.SetContentsOfCell("A1", "Hello");
-
-        s1.Save("test1.txt");
-
-        Spreadsheet anotherOne = new Spreadsheet("/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/test1.txt",
-            s => true, s => s.ToUpper(), "default");
+        AbstractSpreadsheet ss = new Spreadsheet();
+        ss.Save("/some/nonsense/path.txt");
 
     }
 
@@ -1166,93 +1155,93 @@ public class SpreadsheetTests
 
     //}
 
-    [TestMethod()]
-    [ExpectedException(typeof(SpreadsheetReadWriteException))]
-    public void TestDeserializeVersionTHREE()
-    {
-        Spreadsheet s1 = new Spreadsheet(s => true, s => s.ToUpper(), "v1");
-        s1.SetContentsOfCell("A1", "Hello");
+    //[TestMethod()]
+    //[ExpectedException(typeof(SpreadsheetReadWriteException))]
+    //public void TestDeserializeVersionTHREE()
+    //{
+    //    Spreadsheet s1 = new Spreadsheet(s => true, s => s.ToUpper(), "v1");
+    //    s1.SetContentsOfCell("A1", "Hello");
 
-        s1.Save("test1.txt");
+    //    s1.Save("test1.txt");
 
-        Spreadsheet anotherOne = new Spreadsheet("/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/SpreadsheetTests/bin/Debug/net7.0/test1.txt",
-            s => true, s => s.ToUpper(), "v2");
+    //    Spreadsheet anotherOne = new Spreadsheet("/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/SpreadsheetTests/bin/Debug/net7.0/test1.txt",
+    //        s => true, s => s.ToUpper(), "v2");
 
-    }
+    //}
 
 
-    [TestMethod()]
-    [ExpectedException(typeof(SpreadsheetReadWriteException))]
-    public void TestSaveInvalidNameTHREE()
-    {
-        try
-        {
-            Spreadsheet s1 = new Spreadsheet(s => true, s => s.ToUpper(), "v1");
-            s1.SetContentsOfCell("1A", "Hello");
-            s1.Save("test1.txt");
-        }
-        catch (InvalidNameException)
-        {
+    //[TestMethod()]
+    //[ExpectedException(typeof(SpreadsheetReadWriteException))]
+    //public void TestSaveInvalidNameTHREE()
+    //{
+    //    try
+    //    {
+    //        Spreadsheet s1 = new Spreadsheet(s => true, s => s.ToUpper(), "v1");
+    //        s1.SetContentsOfCell("1A", "Hello");
+    //        s1.Save("test1.txt");
+    //    }
+    //    catch (InvalidNameException)
+    //    {
 
-        }
+    //    }
 
-        Spreadsheet anotherOne = new Spreadsheet("/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/test1.txt",
-            s => true, s => s.ToUpper(), "v1");
-    }
+    //    Spreadsheet anotherOne = new Spreadsheet("/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/test1.txt",
+    //        s => true, s => s.ToUpper(), "v1");
+    //}
 
-    [TestMethod()]
-    [ExpectedException(typeof(SpreadsheetReadWriteException))]
-    public void TestSaveInvalidFormulaTHREE()
-    {
-        try
-        {
-            Spreadsheet s1 = new Spreadsheet(s => true, s => s.ToUpper(), "v1");
-            s1.SetContentsOfCell("A1", "=3++");
-            s1.Save("test1.txt");
-        }
-        catch (FormulaFormatException)
-        {
+    //[TestMethod()]
+    //[ExpectedException(typeof(SpreadsheetReadWriteException))]
+    //public void TestSaveInvalidFormulaTHREE()
+    //{
+    //    try
+    //    {
+    //        Spreadsheet s1 = new Spreadsheet(s => true, s => s.ToUpper(), "v1");
+    //        s1.SetContentsOfCell("A1", "=3++");
+    //        s1.Save("test1.txt");
+    //    }
+    //    catch (FormulaFormatException)
+    //    {
 
-        }
+    //    }
 
-        Spreadsheet anotherOne = new Spreadsheet("/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/test1.txt",
-            s => true, s => s.ToUpper(), "v1");
-    }
+    //    Spreadsheet anotherOne = new Spreadsheet("/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/test1.txt",
+    //        s => true, s => s.ToUpper(), "v1");
+    //}
 
-    [TestMethod()]
-    [ExpectedException(typeof(SpreadsheetReadWriteException))]
-    public void TestSaveCircularDependenctTHREE()
-    {
-        try
-        {
-            Spreadsheet s1 = new Spreadsheet(s => true, s => s.ToUpper(), "v1");
-            s1.SetContentsOfCell("A1", "=A2");
-            s1.SetContentsOfCell("A2", "=A1");
+    //[TestMethod()]
+    //[ExpectedException(typeof(SpreadsheetReadWriteException))]
+    //public void TestSaveCircularDependenctTHREE()
+    //{
+    //    try
+    //    {
+    //        Spreadsheet s1 = new Spreadsheet(s => true, s => s.ToUpper(), "v1");
+    //        s1.SetContentsOfCell("A1", "=A2");
+    //        s1.SetContentsOfCell("A2", "=A1");
 
-            s1.Save("test1.txt");
-        }
-        catch (CircularException)
-        {
+    //        s1.Save("test1.txt");
+    //    }
+    //    catch (CircularException)
+    //    {
 
-        }
+    //    }
 
-        Spreadsheet anotherOne = new Spreadsheet("/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/test1.txt",
-            s => true, s => s.ToUpper(), "v1");
-    }
+    //    Spreadsheet anotherOne = new Spreadsheet("/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/test1.txt",
+    //        s => true, s => s.ToUpper(), "v1");
+    //}
 
-    [TestMethod()]
-    [ExpectedException(typeof(SpreadsheetReadWriteException))]
-    public void TestDeserializePathDNETHREE()
-    {
-        Spreadsheet s1 = new Spreadsheet(s => true, s => s.ToUpper(), "v1");
-        s1.SetContentsOfCell("A1", "Hello");
+    //[TestMethod()]
+    //[ExpectedException(typeof(SpreadsheetReadWriteException))]
+    //public void TestDeserializePathDNETHREE()
+    //{
+    //    Spreadsheet s1 = new Spreadsheet(s => true, s => s.ToUpper(), "v1");
+    //    s1.SetContentsOfCell("A1", "Hello");
 
-        s1.Save("test1.txt");
+    //    s1.Save("test1.txt");
 
-        Spreadsheet anotherOne = new Spreadsheet("/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/test1.txt",
-            s => true, s => s.ToUpper(), "v1");
+    //    Spreadsheet anotherOne = new Spreadsheet("/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/test1.txt",
+    //        s => true, s => s.ToUpper(), "v1");
 
-    }
+    //}
 
     // STRESS TESTS
     [TestMethod()]
