@@ -24,7 +24,7 @@ public class Spreadsheet : AbstractSpreadsheet
     {
         private object _content = ""; //stores the content of the cell
         private object _value = ""; //stores the value of the cell
-        private string stringForm = ""; //stores the stringform of the cell
+        private string? stringForm = ""; //stores the stringform of the cell
         private IEnumerable<string> varList; //stores the variable list of a Formula
         private Func<string, double> lookup; //stores the lookup delegate
 
@@ -96,10 +96,17 @@ public class Spreadsheet : AbstractSpreadsheet
                 if (value is Formula f)
                 {
                     varList = f.GetVariables();
+                    _value = f.Evaluate(lookup);
+                    stringForm = "=" + f.ToString();
                 }
                 else
                 {
                     varList = new List<string>();
+                    _value = value;
+                    if (value is not null)
+                    {
+                        stringForm = value.ToString();
+                    }
                 }
             }
         }
@@ -116,12 +123,12 @@ public class Spreadsheet : AbstractSpreadsheet
 
                 if (value is Formula f)
                 {
-                    varList = f.GetVariables();
+                    //varList = f.GetVariables();
                     _value = f.Evaluate(lookup);
                 }
                 else
                 {
-                    varList = new List<string>();
+                    //varList = new List<string>();
                     _value = value;
                 }
             }
@@ -157,7 +164,8 @@ public class Spreadsheet : AbstractSpreadsheet
     private string pathName;
 
     [JsonPropertyName("Cells")]
-    public Dictionary<string, Cell> CellToName {
+    public Dictionary<string, Cell> CellToName
+    {
         get { return cellToName; }
     }
 
@@ -242,12 +250,14 @@ public class Spreadsheet : AbstractSpreadsheet
                 }
 
 
-            } catch (Exception)
+            }
+            catch (Exception)
             {
                 throw new SpreadsheetReadWriteException("Had an issue with opening the file");
 
             }
-        } catch (FileNotFoundException)
+        }
+        catch (DirectoryNotFoundException) //FIXED
         {
             throw new SpreadsheetReadWriteException("Had an issue with reading the file");
 
@@ -298,8 +308,18 @@ public class Spreadsheet : AbstractSpreadsheet
 
         if (cellToName.TryGetValue(name, out cell)) //checks if the cell is in the dictionary
         {
-            return cell.Value;
-        } else
+            if (cell.Content is Formula)
+            {
+                Formula f = (Formula)cell.Content;
+                cell.Value = f.Evaluate(VariableEvaluator);
+                return cell.Value;
+            } else
+            {
+                return cell.Value;
+
+            }
+        }
+        else
         {
             return "";
         }
@@ -345,6 +365,7 @@ public class Spreadsheet : AbstractSpreadsheet
     /// </summary>
     public override IList<string> SetContentsOfCell(string name, string content)
     {
+        Changed = true; //FIXED
         name = normalizer(name); //normalizes the name
 
         if (!IsLegalName(name) || !validator(name)) //if the normalized name is no longer a legal or valid name
@@ -357,18 +378,21 @@ public class Spreadsheet : AbstractSpreadsheet
         if (Double.TryParse(content, out d)) //if content is a double
         {
             return SetCellContents(name, d);
-        } else if (content.StartsWith("=")) //if content is a formula
+        }
+        else if (content.StartsWith("=")) //if content is a formula
         {
             try //attempts to read the string into a formula
             {
                 Formula f = new Formula(content.Substring(1), normalizer, validator);
                 return SetCellContents(name, f);
-            } catch (FormulaFormatException)
+            }
+            catch (FormulaFormatException)
             {
                 throw new FormulaFormatException("Content could not be parsed into a Formula");
             }
 
-        } else //if content is just a string
+        }
+        else //if content is just a string
         {
             return SetCellContents(name, content);
         }
@@ -395,9 +419,31 @@ public class Spreadsheet : AbstractSpreadsheet
             var oldValue = cell.Value;
 
             cell.Content = number; //replace content
+            cell.Value = number;
             List<string> varList = cell.VarList.ToList(); //get all the variables of the formula
             cellPairings.ReplaceDependees(name, varList); //replace the dependees
             List<string> dependentList = GetDirectIndirectDependents(name, cell).ToList(); //get all the dependents of the cell
+
+            if (dependentList.Count > 0)
+            {
+                for (int i = 1; i < dependentList.Count; i++)
+                {
+                    Cell? childCell;
+
+                    if (cellToName.TryGetValue(dependentList[i], out childCell))
+                    {
+                        string childNewStringForm = childCell.StringForm.Substring(1);
+                        string childFinalStringForm = childNewStringForm.Replace(name, number.ToString());
+                        var pValue = new Formula(childFinalStringForm).Evaluate(VariableEvaluator);
+
+                        if (pValue is not FormulaError)
+                        {
+                            childCell.Value = pValue;
+                        }
+                    }
+                }
+            }
+
             return dependentList;
 
         }
@@ -415,6 +461,27 @@ public class Spreadsheet : AbstractSpreadsheet
             }
 
             List<string> dependentList = GetDirectIndirectDependents(name, newCell).ToList(); //get all the dependents of the cell
+
+            if (dependentList.Count > 0)
+            {
+                for (int i = 1; i < dependentList.Count; i++)
+                {
+                    Cell? childCell;
+
+                    if (cellToName.TryGetValue(dependentList[i], out childCell))
+                    {
+                        string childNewStringForm = childCell.StringForm.Substring(1);
+                        string childFinalStringForm = childNewStringForm.Replace(name, number.ToString());
+                        var pValue = new Formula(childFinalStringForm).Evaluate(VariableEvaluator);
+
+                        if (pValue is not FormulaError)
+                        {
+                            childCell.Value = pValue;
+                        }
+                    }
+                }
+            }
+
             return dependentList;
         }
     }
@@ -459,6 +526,7 @@ public class Spreadsheet : AbstractSpreadsheet
         if (cellToName.TryGetValue(name, out cell)) //if the cell is already filled
         {
             cell.Content = text; //assign content as param value
+            cell.Value = text;
             List<string> varList = cell.VarList.ToList();
             cellPairings.ReplaceDependees(name, varList);
 
@@ -509,9 +577,11 @@ public class Spreadsheet : AbstractSpreadsheet
             try
             {
                 cell.Content = formula; //replace content
+                cell.Value = formula.Evaluate(VariableEvaluator);
                 List<string> varList = cell.VarList.ToList(); //get all the variables of the formula
                 cellPairings.ReplaceDependees(name, varList); //replace the dependees
                 List<string> dependentList = GetDirectIndirectDependents(name, cell).ToList(); //get all the dependents of the cell
+
                 return dependentList;
             }
             catch (CircularException)
@@ -539,7 +609,8 @@ public class Spreadsheet : AbstractSpreadsheet
 
                 List<string> dependentList = GetDirectIndirectDependents(name, newCell).ToList(); //get all the dependents of the cell
                 return dependentList;
-            } catch (CircularException)
+            }
+            catch (CircularException)
             {
                 cellToName.Remove(name);
                 throw new CircularException();
@@ -633,16 +704,16 @@ public class Spreadsheet : AbstractSpreadsheet
     public override void Save(string filename)
     {
         string spreadsheetContent = JsonSerializer.Serialize(this);
-        Console.WriteLine(spreadsheetContent);
-
+        
         try
         {
             using (StreamWriter outputFile = new StreamWriter(Path.Combine(pathName, filename)))
             {
                 outputFile.WriteLine(spreadsheetContent);
-                Changed = true;
+                Changed = false;//FIXED
             }
-        } catch (Exception)
+        }
+        catch (Exception)
         {
             throw new SpreadsheetReadWriteException("Had an issue with writing to the file");
         }
@@ -685,4 +756,3 @@ public class Spreadsheet : AbstractSpreadsheet
     }
 
 }
-
