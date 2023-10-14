@@ -1,26 +1,96 @@
 {
   "format": 1,
   "restore": {
-    "/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/FormulaConsole/FormulaConsole.csproj": {}
+    "C:\\Users\\anand\\source\\repos\\ps6-angrybirds\\Spreadsheet\\FormulaConsole\\FormulaConsole.csproj": {}
   },
   "projects": {
-    "/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/Formula/Formula.csproj": {
+    "C:\\Users\\anand\\source\\repos\\ps6-angrybirds\\Spreadsheet\\FormulaConsole\\FormulaConsole.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/Formula/Formula.csproj",
-        "projectName": "Formula",
-        "projectPath": "/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/Formula/Formula.csproj",
-        "packagesPath": "/Users/sarahchoe/.nuget/packages/",
-        "outputPath": "/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/Formula/obj/",
+        "projectUniqueName": "C:\\Users\\anand\\source\\repos\\ps6-angrybirds\\Spreadsheet\\FormulaConsole\\FormulaConsole.csproj",
+        "projectName": "FormulaConsole",
+        "projectPath": "C:\\Users\\anand\\source\\repos\\ps6-angrybirds\\Spreadsheet\\FormulaConsole\\FormulaConsole.csproj",
+        "packagesPath": "C:\\Users\\anand\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\anand\\source\\repos\\ps6-angrybirds\\Spreadsheet\\FormulaConsole\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "/Users/sarahchoe/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\anand\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "/usr/local/share/dotnet/library-packs": {},
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "C:\\Users\\anand\\source\\repos\\ps6-angrybirds\\Spreadsheet\\Formula\\Formula.csproj": {
+                "projectPath": "C:\\Users\\anand\\source\\repos\\ps6-angrybirds\\Spreadsheet\\Formula\\Formula.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\anand\\source\\repos\\ps6-angrybirds\\Spreadsheet\\Formula\\Formula.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\anand\\source\\repos\\ps6-angrybirds\\Spreadsheet\\Formula\\Formula.csproj",
+        "projectName": "Formula",
+        "projectPath": "C:\\Users\\anand\\source\\repos\\ps6-angrybirds\\Spreadsheet\\Formula\\Formula.csproj",
+        "packagesPath": "C:\\Users\\anand\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\anand\\Source\\Repos\\ps6-angrybirds\\Spreadsheet\\Formula\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\anand\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -54,65 +124,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.308/RuntimeIdentifierGraph.json"
-        }
-      }
-    },
-    "/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/FormulaConsole/FormulaConsole.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/FormulaConsole/FormulaConsole.csproj",
-        "projectName": "FormulaConsole",
-        "projectPath": "/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/FormulaConsole/FormulaConsole.csproj",
-        "packagesPath": "/Users/sarahchoe/.nuget/packages/",
-        "outputPath": "/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/FormulaConsole/obj/",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "/Users/sarahchoe/.nuget/NuGet/NuGet.Config"
-        ],
-        "originalTargetFrameworks": [
-          "net7.0"
-        ],
-        "sources": {
-          "/usr/local/share/dotnet/library-packs": {},
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "net7.0": {
-            "targetAlias": "net7.0",
-            "projectReferences": {
-              "/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/Formula/Formula.csproj": {
-                "projectPath": "/Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/Formula/Formula.csproj"
-              }
-            }
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        }
-      },
-      "frameworks": {
-        "net7.0": {
-          "targetAlias": "net7.0",
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48",
-            "net481"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.308/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
         }
       }
     }
