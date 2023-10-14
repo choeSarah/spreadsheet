@@ -10,3 +10,15 @@
 /Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/Formula/obj/Debug/net7.0/refint/Formula.dll
 /Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/Formula/obj/Debug/net7.0/Formula.pdb
 /Users/sarahchoe/Projects/spreadsheet-choeSarah/Spreadsheet/Formula/obj/Debug/net7.0/ref/Formula.dll
+C:\Users\anand\source\repos\ps6-angrybirds\Spreadsheet\Formula\bin\Debug\net7.0\Formula.deps.json
+C:\Users\anand\source\repos\ps6-angrybirds\Spreadsheet\Formula\bin\Debug\net7.0\Formula.dll
+C:\Users\anand\source\repos\ps6-angrybirds\Spreadsheet\Formula\bin\Debug\net7.0\Formula.pdb
+C:\Users\anand\source\repos\ps6-angrybirds\Spreadsheet\Formula\obj\Debug\net7.0\Formula.csproj.AssemblyReference.cache
+C:\Users\anand\source\repos\ps6-angrybirds\Spreadsheet\Formula\obj\Debug\net7.0\Formula.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\anand\source\repos\ps6-angrybirds\Spreadsheet\Formula\obj\Debug\net7.0\Formula.AssemblyInfoInputs.cache
+C:\Users\anand\source\repos\ps6-angrybirds\Spreadsheet\Formula\obj\Debug\net7.0\Formula.AssemblyInfo.cs
+C:\Users\anand\source\repos\ps6-angrybirds\Spreadsheet\Formula\obj\Debug\net7.0\Formula.csproj.CoreCompileInputs.cache
+C:\Users\anand\source\repos\ps6-angrybirds\Spreadsheet\Formula\obj\Debug\net7.0\Formula.dll
+C:\Users\anand\source\repos\ps6-angrybirds\Spreadsheet\Formula\obj\Debug\net7.0\refint\Formula.dll
+C:\Users\anand\source\repos\ps6-angrybirds\Spreadsheet\Formula\obj\Debug\net7.0\Formula.pdb
+C:\Users\anand\source\repos\ps6-angrybirds\Spreadsheet\Formula\obj\Debug\net7.0\ref\Formula.dll
