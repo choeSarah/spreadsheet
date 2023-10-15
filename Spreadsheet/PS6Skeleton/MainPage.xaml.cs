@@ -5,6 +5,7 @@ namespace SpreadsheetGUI;
 /// <summary>
 /// Example of using a SpreadsheetGUI object
 /// </summary>
+/// 
 public partial class MainPage : ContentPage
 {
 
