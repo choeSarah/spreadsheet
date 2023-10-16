@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "3PhofFCC880ebYw7bWZeeKYzf0egTm/TDMqE2YTDVfUw+I7wOL+dw7tuWIx1DBv2Q8l/bGQ2YbduJ/3Rp4THUA==",
+  "dgSpecHash": "JxVniOujl6S+yTRFaiseabd8OiFcehurHfZi4ixwSjbBfgi3O3/iJ1MjCtrtpQv1RxkM/pU0eRSD2FdfE1qGGg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\anand\\source\\repos\\ps6-angrybirds\\Spreadsheet\\DependencyConsole\\DependencyConsole.csproj",
+  "projectFilePath": "/Users/sarahchoe/Projects/ps6-angrybirds/Spreadsheet/DependencyConsole/DependencyConsole.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

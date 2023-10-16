@@ -62,12 +62,19 @@ public class SimpleSpreadsheetGrid : ScrollView, ISpreadsheetGrid
         };
     }
 
+    /// <summary>
+    /// Clears the display.
+    /// </summary>
     public void Clear()
     {
         foreach (Entry cell in _cells.Values)
             cell.Text = "";
     }
 
+    /// <summary>
+    /// If the zero-based column and row are in range, sets the value of that
+    /// cell and returns true.  Otherwise, returns false.
+    /// </summary>
     public bool SetValue(int col, int row, string c)
     {
         if (InvalidAddress(col, row))
@@ -76,6 +83,11 @@ public class SimpleSpreadsheetGrid : ScrollView, ISpreadsheetGrid
         return true;
     }
 
+    /// <summary>
+    /// If the zero-based column and row are in range, assigns the value
+    /// of that cell to the out parameter and returns true.  Otherwise,
+    /// returns false.
+    /// </summary>
     public bool GetValue(int col, int row, out string c)
     {
         if (InvalidAddress(col, row))
@@ -87,6 +99,10 @@ public class SimpleSpreadsheetGrid : ScrollView, ISpreadsheetGrid
         return true;
     }
 
+    /// <summary>
+    /// If the zero-based column and row are in range, uses them to set
+    /// the current selection and returns true.  Otherwise, returns false.
+    /// </summary>
     public bool SetSelection(int col, int row)
     {
         if (InvalidAddress(col, row))
@@ -97,6 +113,10 @@ public class SimpleSpreadsheetGrid : ScrollView, ISpreadsheetGrid
         return true;
     }
 
+    /// <summary>
+    /// Assigns the column and row of the current selection to the
+    /// out parameters.
+    /// </summary>
     public void GetSelection(out int col, out int row)
     {
         col = _selectedCol;

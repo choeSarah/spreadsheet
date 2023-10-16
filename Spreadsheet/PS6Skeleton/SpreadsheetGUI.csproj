@@ -47,4 +47,9 @@
 		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
 	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\DependencyGraph\DependencyGraph.csproj" />
+	  <ProjectReference Include="..\Formula\Formula.csproj" />
+	  <ProjectReference Include="..\Spreadsheet\Spreadsheet.csproj" />
+	</ItemGroup>
 </Project>
