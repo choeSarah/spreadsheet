@@ -93,7 +93,7 @@
         "projectName": "Formula",
         "projectPath": "C:\\Users\\anand\\source\\repos\\ps6-angrybirds\\Spreadsheet\\Formula\\Formula.csproj",
         "packagesPath": "C:\\Users\\anand\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\anand\\Source\\Repos\\ps6-angrybirds\\Spreadsheet\\Formula\\obj\\",
+        "outputPath": "C:\\Users\\anand\\source\\repos\\ps6-angrybirds\\Spreadsheet\\Formula\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
