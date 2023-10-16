@@ -1,4 +1,5 @@
-﻿using SS;
+﻿using Microsoft.UI.Xaml.Controls.Primitives;
+using SS;
 
 namespace SpreadsheetGUI;
 
@@ -6,6 +7,7 @@ namespace SpreadsheetGUI;
 /// Example of using a SpreadsheetGUI object
 /// </summary>
 /// 
+
 public partial class MainPage : ContentPage
 {
 
@@ -42,6 +44,16 @@ public partial class MainPage : ContentPage
         spreadsheetGrid.Clear();
     }
 
+    private void HelpClicked(Object sender, EventArgs e)
+    {
+        var popup = new SimplePopup();
+
+        this.ShowPopup(popup);
+    }
+
+    
+
+
     /// <summary>
     /// Opens any file as text and prints its contents.
     /// Note the use of async and await, concepts we will learn more about
@@ -71,5 +83,10 @@ public partial class MainPage : ContentPage
             Console.WriteLine("Error opening file:");
             Console.WriteLine(ex);
         }
+    }
+
+    private void MenuFlyoutItem_Clicked(object sender, EventArgs e)
+    {
+
     }
 }
