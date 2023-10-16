@@ -46,9 +46,9 @@ public partial class MainPage : ContentPage
 
     private void HelpClicked(Object sender, EventArgs e)
     {
-        var popup = new SimplePopup();
+      /*  var popup = new SimplePopup();
 
-        this.ShowPopup(popup);
+        this.ShowPopup(popup);*/
     }
 
     

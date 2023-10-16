@@ -6,7 +6,7 @@
     <ContentPage.MenuBarItems>
         <MenuBarItem Text="File">
             <MenuFlyoutItem Text="New" Clicked="NewClicked" />
-            <MenuFlyoutItem Text="Help"/>
+            <MenuFlyoutItem Text="Help" Clicked= "HelpClicked"/>
             <MenuFlyoutItem Text="Open" Clicked="OpenClicked" />
         </MenuBarItem>
     </ContentPage.MenuBarItems>
