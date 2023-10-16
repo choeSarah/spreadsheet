@@ -11,7 +11,7 @@ namespace SpreadsheetGUI;
 
 public partial class MainPage : ContentPage
 {
-
+    
     /// <summary>
     /// Constructor for the demo
     /// </summary>
@@ -52,7 +52,8 @@ public partial class MainPage : ContentPage
 
     private async void SaveClicked(Object sender, EventArgs e)
     {
-        string result = await DisplayPromptAsync("Question 1", "What's your name?");
+        string result = await DisplayPromptAsync("Save to File", "Enter Filename");
+        
     }
 
 
