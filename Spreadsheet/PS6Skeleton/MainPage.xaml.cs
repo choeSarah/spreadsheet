@@ -1,4 +1,5 @@
 ﻿using Microsoft.UI.Xaml.Controls.Primitives;
+using Microsoft.VisualBasic;
 using SS;
 
 namespace SpreadsheetGUI;
@@ -46,12 +47,15 @@ public partial class MainPage : ContentPage
 
     private void HelpClicked(Object sender, EventArgs e)
     {
-      /*  var popup = new SimplePopup();
-
-        this.ShowPopup(popup);*/
+        DisplayAlert("Information","select cell to modify \nmodify cell by using the top textbar.","Ok");
     }
 
-    
+    private async void SaveClicked(Object sender, EventArgs e)
+    {
+        string result = await DisplayPromptAsync("Question 1", "What's your name?");
+    }
+
+
 
 
     /// <summary>
