@@ -8,25 +8,32 @@
     "net7.0": []
   },
   "packageFolders": {
-    "/Users/sarahchoe/.nuget/packages/": {}
+    "C:\\Users\\anand\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/sarahchoe/Projects/ps6-angrybirds/Spreadsheet/DependencyGraph/DependencyGraph.csproj",
+      "projectUniqueName": "C:\\Users\\anand\\source\\repos\\ps6-angrybirds\\Spreadsheet\\DependencyGraph\\DependencyGraph.csproj",
       "projectName": "DependencyGraph",
-      "projectPath": "/Users/sarahchoe/Projects/ps6-angrybirds/Spreadsheet/DependencyGraph/DependencyGraph.csproj",
-      "packagesPath": "/Users/sarahchoe/.nuget/packages/",
-      "outputPath": "/Users/sarahchoe/Projects/ps6-angrybirds/Spreadsheet/DependencyGraph/obj/",
+      "projectPath": "C:\\Users\\anand\\source\\repos\\ps6-angrybirds\\Spreadsheet\\DependencyGraph\\DependencyGraph.csproj",
+      "packagesPath": "C:\\Users\\anand\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\anand\\source\\repos\\ps6-angrybirds\\Spreadsheet\\DependencyGraph\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "/Users/sarahchoe/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\anand\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
       ],
       "sources": {
-        "/usr/local/share/dotnet/library-packs": {},
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -60,7 +67,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.309/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -1,88 +1,40 @@
 {
   "format": 1,
   "restore": {
-    "/Users/sarahchoe/Projects/ps6-angrybirds/Spreadsheet/FormulaEvaluatorTests/FormulaEvaluatorTests.csproj": {}
+    "C:\\Users\\anand\\source\\repos\\ps6-angrybirds\\Spreadsheet\\FormulaEvaluatorTests\\FormulaEvaluatorTests.csproj": {}
   },
   "projects": {
-    "/Users/sarahchoe/Projects/ps6-angrybirds/Spreadsheet/FormulaEvaluator/FormulaEvaluator.csproj": {
+    "C:\\Users\\anand\\source\\repos\\ps6-angrybirds\\Spreadsheet\\FormulaEvaluatorTests\\FormulaEvaluatorTests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/sarahchoe/Projects/ps6-angrybirds/Spreadsheet/FormulaEvaluator/FormulaEvaluator.csproj",
-        "projectName": "FormulaEvaluator",
-        "projectPath": "/Users/sarahchoe/Projects/ps6-angrybirds/Spreadsheet/FormulaEvaluator/FormulaEvaluator.csproj",
-        "packagesPath": "/Users/sarahchoe/.nuget/packages/",
-        "outputPath": "/Users/sarahchoe/Projects/ps6-angrybirds/Spreadsheet/FormulaEvaluator/obj/",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "/Users/sarahchoe/.nuget/NuGet/NuGet.Config"
-        ],
-        "originalTargetFrameworks": [
-          "net7.0"
-        ],
-        "sources": {
-          "/usr/local/share/dotnet/library-packs": {},
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "net7.0": {
-            "targetAlias": "net7.0",
-            "projectReferences": {}
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        }
-      },
-      "frameworks": {
-        "net7.0": {
-          "targetAlias": "net7.0",
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48",
-            "net481"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.309/RuntimeIdentifierGraph.json"
-        }
-      }
-    },
-    "/Users/sarahchoe/Projects/ps6-angrybirds/Spreadsheet/FormulaEvaluatorTests/FormulaEvaluatorTests.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "/Users/sarahchoe/Projects/ps6-angrybirds/Spreadsheet/FormulaEvaluatorTests/FormulaEvaluatorTests.csproj",
+        "projectUniqueName": "C:\\Users\\anand\\source\\repos\\ps6-angrybirds\\Spreadsheet\\FormulaEvaluatorTests\\FormulaEvaluatorTests.csproj",
         "projectName": "FormulaEvaluatorTests",
-        "projectPath": "/Users/sarahchoe/Projects/ps6-angrybirds/Spreadsheet/FormulaEvaluatorTests/FormulaEvaluatorTests.csproj",
-        "packagesPath": "/Users/sarahchoe/.nuget/packages/",
-        "outputPath": "/Users/sarahchoe/Projects/ps6-angrybirds/Spreadsheet/FormulaEvaluatorTests/obj/",
+        "projectPath": "C:\\Users\\anand\\source\\repos\\ps6-angrybirds\\Spreadsheet\\FormulaEvaluatorTests\\FormulaEvaluatorTests.csproj",
+        "packagesPath": "C:\\Users\\anand\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\anand\\source\\repos\\ps6-angrybirds\\Spreadsheet\\FormulaEvaluatorTests\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "/Users/sarahchoe/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\anand\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "/usr/local/share/dotnet/library-packs": {},
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "/Users/sarahchoe/Projects/ps6-angrybirds/Spreadsheet/FormulaEvaluator/FormulaEvaluator.csproj": {
-                "projectPath": "/Users/sarahchoe/Projects/ps6-angrybirds/Spreadsheet/FormulaEvaluator/FormulaEvaluator.csproj"
+              "C:\\Users\\anand\\source\\repos\\ps6-angrybirds\\Spreadsheet\\FormulaEvaluator\\FormulaEvaluator.csproj": {
+                "projectPath": "C:\\Users\\anand\\source\\repos\\ps6-angrybirds\\Spreadsheet\\FormulaEvaluator\\FormulaEvaluator.csproj"
               }
             }
           }
@@ -130,7 +82,67 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.309/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\anand\\source\\repos\\ps6-angrybirds\\Spreadsheet\\FormulaEvaluator\\FormulaEvaluator.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\anand\\source\\repos\\ps6-angrybirds\\Spreadsheet\\FormulaEvaluator\\FormulaEvaluator.csproj",
+        "projectName": "FormulaEvaluator",
+        "projectPath": "C:\\Users\\anand\\source\\repos\\ps6-angrybirds\\Spreadsheet\\FormulaEvaluator\\FormulaEvaluator.csproj",
+        "packagesPath": "C:\\Users\\anand\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\anand\\source\\repos\\ps6-angrybirds\\Spreadsheet\\FormulaEvaluator\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\anand\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
         }
       }
     }

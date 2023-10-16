@@ -1,26 +1,32 @@
 {
   "format": 1,
   "restore": {
-    "/Users/sarahchoe/Projects/ps6-angrybirds/Spreadsheet/SpreadsheetTests/SpreadsheetTests.csproj": {}
+    "C:\\Users\\anand\\source\\repos\\ps6-angrybirds\\Spreadsheet\\SpreadsheetTests\\SpreadsheetTests.csproj": {}
   },
   "projects": {
-    "/Users/sarahchoe/Projects/ps6-angrybirds/Spreadsheet/DependencyGraph/DependencyGraph.csproj": {
+    "C:\\Users\\anand\\source\\repos\\ps6-angrybirds\\Spreadsheet\\DependencyGraph\\DependencyGraph.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/sarahchoe/Projects/ps6-angrybirds/Spreadsheet/DependencyGraph/DependencyGraph.csproj",
+        "projectUniqueName": "C:\\Users\\anand\\source\\repos\\ps6-angrybirds\\Spreadsheet\\DependencyGraph\\DependencyGraph.csproj",
         "projectName": "DependencyGraph",
-        "projectPath": "/Users/sarahchoe/Projects/ps6-angrybirds/Spreadsheet/DependencyGraph/DependencyGraph.csproj",
-        "packagesPath": "/Users/sarahchoe/.nuget/packages/",
-        "outputPath": "/Users/sarahchoe/Projects/ps6-angrybirds/Spreadsheet/DependencyGraph/obj/",
+        "projectPath": "C:\\Users\\anand\\source\\repos\\ps6-angrybirds\\Spreadsheet\\DependencyGraph\\DependencyGraph.csproj",
+        "packagesPath": "C:\\Users\\anand\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\anand\\source\\repos\\ps6-angrybirds\\Spreadsheet\\DependencyGraph\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "/Users/sarahchoe/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\anand\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "/usr/local/share/dotnet/library-packs": {},
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -54,27 +60,33 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.309/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Users/sarahchoe/Projects/ps6-angrybirds/Spreadsheet/Formula/Formula.csproj": {
+    "C:\\Users\\anand\\source\\repos\\ps6-angrybirds\\Spreadsheet\\Formula\\Formula.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/sarahchoe/Projects/ps6-angrybirds/Spreadsheet/Formula/Formula.csproj",
+        "projectUniqueName": "C:\\Users\\anand\\source\\repos\\ps6-angrybirds\\Spreadsheet\\Formula\\Formula.csproj",
         "projectName": "Formula",
-        "projectPath": "/Users/sarahchoe/Projects/ps6-angrybirds/Spreadsheet/Formula/Formula.csproj",
-        "packagesPath": "/Users/sarahchoe/.nuget/packages/",
-        "outputPath": "/Users/sarahchoe/Projects/ps6-angrybirds/Spreadsheet/Formula/obj/",
+        "projectPath": "C:\\Users\\anand\\source\\repos\\ps6-angrybirds\\Spreadsheet\\Formula\\Formula.csproj",
+        "packagesPath": "C:\\Users\\anand\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\anand\\source\\repos\\ps6-angrybirds\\Spreadsheet\\Formula\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "/Users/sarahchoe/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\anand\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "/usr/local/share/dotnet/library-packs": {},
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -108,96 +120,41 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.309/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Users/sarahchoe/Projects/ps6-angrybirds/Spreadsheet/Spreadsheet/Spreadsheet.csproj": {
+    "C:\\Users\\anand\\source\\repos\\ps6-angrybirds\\Spreadsheet\\SpreadsheetTests\\SpreadsheetTests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/sarahchoe/Projects/ps6-angrybirds/Spreadsheet/Spreadsheet/Spreadsheet.csproj",
-        "projectName": "Spreadsheet",
-        "projectPath": "/Users/sarahchoe/Projects/ps6-angrybirds/Spreadsheet/Spreadsheet/Spreadsheet.csproj",
-        "packagesPath": "/Users/sarahchoe/.nuget/packages/",
-        "outputPath": "/Users/sarahchoe/Projects/ps6-angrybirds/Spreadsheet/Spreadsheet/obj/",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "/Users/sarahchoe/.nuget/NuGet/NuGet.Config"
-        ],
-        "originalTargetFrameworks": [
-          "net7.0"
-        ],
-        "sources": {
-          "/usr/local/share/dotnet/library-packs": {},
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "net7.0": {
-            "targetAlias": "net7.0",
-            "projectReferences": {
-              "/Users/sarahchoe/Projects/ps6-angrybirds/Spreadsheet/DependencyGraph/DependencyGraph.csproj": {
-                "projectPath": "/Users/sarahchoe/Projects/ps6-angrybirds/Spreadsheet/DependencyGraph/DependencyGraph.csproj"
-              },
-              "/Users/sarahchoe/Projects/ps6-angrybirds/Spreadsheet/Formula/Formula.csproj": {
-                "projectPath": "/Users/sarahchoe/Projects/ps6-angrybirds/Spreadsheet/Formula/Formula.csproj"
-              }
-            }
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        }
-      },
-      "frameworks": {
-        "net7.0": {
-          "targetAlias": "net7.0",
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48",
-            "net481"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.309/RuntimeIdentifierGraph.json"
-        }
-      }
-    },
-    "/Users/sarahchoe/Projects/ps6-angrybirds/Spreadsheet/SpreadsheetTests/SpreadsheetTests.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "/Users/sarahchoe/Projects/ps6-angrybirds/Spreadsheet/SpreadsheetTests/SpreadsheetTests.csproj",
+        "projectUniqueName": "C:\\Users\\anand\\source\\repos\\ps6-angrybirds\\Spreadsheet\\SpreadsheetTests\\SpreadsheetTests.csproj",
         "projectName": "SpreadsheetTests",
-        "projectPath": "/Users/sarahchoe/Projects/ps6-angrybirds/Spreadsheet/SpreadsheetTests/SpreadsheetTests.csproj",
-        "packagesPath": "/Users/sarahchoe/.nuget/packages/",
-        "outputPath": "/Users/sarahchoe/Projects/ps6-angrybirds/Spreadsheet/SpreadsheetTests/obj/",
+        "projectPath": "C:\\Users\\anand\\source\\repos\\ps6-angrybirds\\Spreadsheet\\SpreadsheetTests\\SpreadsheetTests.csproj",
+        "packagesPath": "C:\\Users\\anand\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\anand\\source\\repos\\ps6-angrybirds\\Spreadsheet\\SpreadsheetTests\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "/Users/sarahchoe/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\anand\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "/usr/local/share/dotnet/library-packs": {},
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "/Users/sarahchoe/Projects/ps6-angrybirds/Spreadsheet/Spreadsheet/Spreadsheet.csproj": {
-                "projectPath": "/Users/sarahchoe/Projects/ps6-angrybirds/Spreadsheet/Spreadsheet/Spreadsheet.csproj"
+              "C:\\Users\\anand\\source\\repos\\ps6-angrybirds\\Spreadsheet\\Spreadsheet\\Spreadsheet.csproj": {
+                "projectPath": "C:\\Users\\anand\\source\\repos\\ps6-angrybirds\\Spreadsheet\\Spreadsheet\\Spreadsheet.csproj"
               }
             }
           }
@@ -245,7 +202,74 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.309/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\anand\\source\\repos\\ps6-angrybirds\\Spreadsheet\\Spreadsheet\\Spreadsheet.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\anand\\source\\repos\\ps6-angrybirds\\Spreadsheet\\Spreadsheet\\Spreadsheet.csproj",
+        "projectName": "Spreadsheet",
+        "projectPath": "C:\\Users\\anand\\source\\repos\\ps6-angrybirds\\Spreadsheet\\Spreadsheet\\Spreadsheet.csproj",
+        "packagesPath": "C:\\Users\\anand\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\anand\\source\\repos\\ps6-angrybirds\\Spreadsheet\\Spreadsheet\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\anand\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "C:\\Users\\anand\\source\\repos\\ps6-angrybirds\\Spreadsheet\\DependencyGraph\\DependencyGraph.csproj": {
+                "projectPath": "C:\\Users\\anand\\source\\repos\\ps6-angrybirds\\Spreadsheet\\DependencyGraph\\DependencyGraph.csproj"
+              },
+              "C:\\Users\\anand\\source\\repos\\ps6-angrybirds\\Spreadsheet\\Formula\\Formula.csproj": {
+                "projectPath": "C:\\Users\\anand\\source\\repos\\ps6-angrybirds\\Spreadsheet\\Formula\\Formula.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
         }
       }
     }
