@@ -1,4 +1,6 @@
-﻿using SpreadsheetUtilities;
+﻿using Microsoft.UI.Xaml.Controls.Primitives;
+using Microsoft.VisualBasic;
+using SpreadsheetUtilities;
 using SS;
 
 namespace SpreadsheetGUI;
@@ -6,6 +8,8 @@ namespace SpreadsheetGUI;
 /// <summary>
 /// Example of using a SpreadsheetGUI object
 /// </summary>
+/// 
+
 public partial class MainPage : ContentPage
 {
     private Spreadsheet ss = new Spreadsheet();
@@ -133,6 +137,20 @@ public partial class MainPage : ContentPage
         spreadsheetGrid.Clear();
     }
 
+    private void HelpClicked(Object sender, EventArgs e)
+    {
+        DisplayAlert("Information","select cell to modify \nmodify cell by using the top textbar.","Ok");
+    }
+
+    private async void SaveClicked(Object sender, EventArgs e)
+    {
+        string result = await DisplayPromptAsync("Save to File", "Enter Filename");
+        
+    }
+
+
+
+
     /// <summary>
     /// Opens any file as text and prints its contents.
     /// Note the use of async and await, concepts we will learn more about
@@ -162,5 +180,10 @@ public partial class MainPage : ContentPage
             Console.WriteLine("Error opening file:");
             Console.WriteLine(ex);
         }
+    }
+
+    private void MenuFlyoutItem_Clicked(object sender, EventArgs e)
+    {
+
     }
 }

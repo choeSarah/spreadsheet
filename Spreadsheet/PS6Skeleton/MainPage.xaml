@@ -3,8 +3,10 @@
              xmlns:SS="clr-namespace:SS"
              x:Class="SpreadsheetGUI.MainPage">
     <ContentPage.MenuBarItems>
-        <MenuBarItem Text="File"> 
+        <MenuBarItem Text="File">
+            <MenuFlyoutItem Text="Save" Clicked="SaveClicked" />
             <MenuFlyoutItem Text="New" Clicked="NewClicked" />
+            <MenuFlyoutItem Text="Help" Clicked="HelpClicked"/>
             <MenuFlyoutItem Text="Open" Clicked="OpenClicked" />
         </MenuBarItem>
     </ContentPage.MenuBarItems>
