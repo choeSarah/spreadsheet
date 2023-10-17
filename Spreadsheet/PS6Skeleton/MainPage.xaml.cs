@@ -84,6 +84,7 @@ public partial class MainPage : ContentPage
         {
             contentBox.Text = ss.GetCellContents(cellName).ToString();
             nameValueBox.Text = "Cell: " + cellName + "; Value: " + value;
+
         }
     }
 
