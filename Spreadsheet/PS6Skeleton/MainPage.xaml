@@ -1,7 +1,8 @@
 ﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:SS="clr-namespace:SS"
-             x:Class="SpreadsheetGUI.MainPage">
+             x:Class="SpreadsheetGUI.MainPage"
+             Title="My Spreadsheet">
     <ContentPage.MenuBarItems>
         <MenuBarItem Text="File"> 
             <MenuFlyoutItem Text="New" Clicked="NewClicked" />
@@ -19,6 +20,12 @@
             Placeholder="Cell Content"
             Completed="ContentEntryCompleted"
             />
+
+        <StackLayout x:Name="ConfirmationDialog" IsVisible="False">
+            <Label Text="Do you want to close the application?" />
+            <Button Text="Yes" Clicked="OnCloseConfirmed" />
+            <Button Text="No" Clicked="OnCloseCancelled" />
+        </StackLayout>
 
         <Grid>
             <SS:SpreadsheetGrid x:Name="spreadsheetGrid" />

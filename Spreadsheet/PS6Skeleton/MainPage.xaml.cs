@@ -23,12 +23,8 @@ public partial class MainPage : ContentPage
         // take a SpreadsheetGrid as its parameter and return nothing.  So we
         // register the displaySelection method below.
         spreadsheetGrid.SelectionChanged += displaySelection;
-        //spreadsheetGrid.SetSelection(2, 3);
-    }
 
-    protected void OnSleep()
-    {
-        
+        //spreadsheetGrid.SetSelection(2, 3);
     }
 
     /// <summary>
@@ -101,6 +97,7 @@ public partial class MainPage : ContentPage
         {
             ss.SetContentsOfCell(cellName, enteredText);
             string cellValue = ss.GetCellValue(cellName).ToString();
+            Console.WriteLine("Changed: " + ss.Changed);
 
 
             if (ss.GetCellValue(cellName) is FormulaError)
@@ -124,6 +121,10 @@ public partial class MainPage : ContentPage
             DisplayAlert("ERROR", "Invalid formula: FormulaFormatException", "OK");
             contentBox.Text = ""; 
 
+        } catch (CircularException)
+        {
+            DisplayAlert("ERROR", "Circular Dependency Detected", "OK");
+            contentBox.Text = "";
         }
     }
 

@@ -588,6 +588,7 @@ public class Spreadsheet : AbstractSpreadsheet
             {
                 cell.Content = oldContent;
                 cell.Value = oldValue;
+
                 throw new CircularException();
             }
 
