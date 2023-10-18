@@ -7,29 +7,50 @@
         <MenuBarItem Text="File"> 
             <MenuFlyoutItem Text="New" Clicked="NewClicked" />
             <MenuFlyoutItem Text="Open" Clicked="OpenClicked" />
+            <MenuFlyoutItem Text="Save" Clicked="SaveClicked"/>
+            <MenuFlyoutItem Text="Close" Clicked="CloseClicked"/>
+            <MenuFlyoutItem Text="Help" Clicked="HelpClicked"/>
+
+
         </MenuBarItem>
     </ContentPage.MenuBarItems>
     <VerticalStackLayout>
-        <Entry
-            x:Name="nameValueBox"
-            Placeholder="Cell Name and Value"
-            IsReadOnly="True"
-            />
-        <Entry
-            x:Name="contentBox"
-            Placeholder="Cell Content"
-            Completed="ContentEntryCompleted"
+            <Label>Cell Name</Label>
+            <Entry
+                x:Name="nameBox"
+                Placeholder="Cell Name"
+                IsReadOnly="True"
             />
 
-        <StackLayout x:Name="ConfirmationDialog" IsVisible="False">
-            <Label Text="Do you want to close the application?" />
-            <Button Text="Yes" Clicked="OnCloseConfirmed" />
-            <Button Text="No" Clicked="OnCloseCancelled" />
-        </StackLayout>
+            <Label>Cell Value</Label>
+            <Entry
+                x:Name="valueBox"
+                Placeholder="Cell Value"
+                IsReadOnly="True"
+            />
 
+            <Label>Cell Content</Label>
+            <Entry
+                x:Name="contentBox"
+                Placeholder="Cell Content"
+                Completed="ContentEntryCompleted"
+                />
+        <HorizontalStackLayout>
+            <Entry
+                x:Name="sortBox"
+                Placeholder="Selected Row"
+            />
+            <Button
+                x:Name="sortButton"
+                Text="Sort"
+                Clicked="OnButtonClicked"
+            />
+
+        </HorizontalStackLayout>
         <Grid>
             <SS:SpreadsheetGrid x:Name="spreadsheetGrid" />
         </Grid>
     </VerticalStackLayout>
+
 </ContentPage>
 
