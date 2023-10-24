@@ -8,4 +8,5 @@ GitHub ID:  choeSarah and anand3465 <br />
 Repo:       https://github.com/uofu-cs3500-fall23/ps6-angrybirds.git <br />
 Date:       October 23, 2023 <br />
 Solution:   Spreadsheet <br />
+Requirement: This solution should be run on a MacOs Computer, not Windows.
 Copyright:  CS 3500 and Sarah Choe and Anand Palukuri- This work may not be copied for use in Academic Coursework.
