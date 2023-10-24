@@ -24,7 +24,7 @@ public class Spreadsheet : AbstractSpreadsheet
     {
         private object _content = ""; //stores the content of the cell
         private object _value = ""; //stores the value of the cell
-        private string? stringForm = ""; //stores the stringform of the cell
+        private string stringForm = ""; //stores the stringform of the cell
         private IEnumerable<string> varList; //stores the variable list of a Formula
         private Func<string, double> lookup; //stores the lookup delegate
 
@@ -375,9 +375,11 @@ public class Spreadsheet : AbstractSpreadsheet
 
         double d;
 
-        if (Double.TryParse(content, out d)) //if content is a double
+        if (Double.TryParse(content, out d) && !content.Contains(",")) //if content is a double and an edge case for commas
         {
+            Console.WriteLine("is double");
             return SetCellContents(name, d);
+
         }
         else if (content.StartsWith("=")) //if content is a formula
         {
@@ -588,6 +590,7 @@ public class Spreadsheet : AbstractSpreadsheet
             {
                 cell.Content = oldContent;
                 cell.Value = oldValue;
+
                 throw new CircularException();
             }
 

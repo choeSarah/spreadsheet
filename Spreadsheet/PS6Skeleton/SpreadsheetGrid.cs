@@ -3,6 +3,12 @@ using Font = Microsoft.Maui.Graphics.Font;
 using SizeF = Microsoft.Maui.Graphics.SizeF;
 using PointF = Microsoft.Maui.Graphics.PointF;
 
+using System;
+using Foundation;
+using Microsoft.Maui;
+using Microsoft.Maui.Controls;
+using UIKit;
+
 namespace SS;
 
 /// <summary>
