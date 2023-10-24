@@ -8,49 +8,42 @@
             <MenuFlyoutItem Text="New" Clicked="NewClicked" />
             <MenuFlyoutItem Text="Open" Clicked="OpenClicked" />
             <MenuFlyoutItem Text="Save" Clicked="SaveClicked"/>
-            <MenuFlyoutItem Text="Close" Clicked="CloseClicked"/>
             <MenuFlyoutItem Text="Help" Clicked="HelpClicked"/>
+        </MenuBarItem>
 
+        <MenuBarItem Text="Split">
+            <MenuFlyoutItem Text="Split By (,)" Clicked="SplitC_Clicked" />
+            <MenuFlyoutItem Text="Split By (;)" Clicked="SplitS_Clicked" />
+            <MenuFlyoutItem Text="Split By (.)" Clicked="SplitP_Clicked" />
+            <MenuFlyoutItem Text="Split By ( )" Clicked="SplitSp_Clicked" />
 
         </MenuBarItem>
     </ContentPage.MenuBarItems>
-    <VerticalStackLayout>
-            <Label>Cell Name</Label>
-            <Entry
-                x:Name="nameBox"
-                Placeholder="Cell Name"
-                IsReadOnly="True"
-            />
-
-            <Label>Cell Value</Label>
-            <Entry
-                x:Name="valueBox"
-                Placeholder="Cell Value"
-                IsReadOnly="True"
-            />
-
-            <Label>Cell Content</Label>
-            <Entry
-                x:Name="contentBox"
-                Placeholder="Cell Content"
-                Completed="ContentEntryCompleted"
-                />
-        <HorizontalStackLayout>
-            <Entry
-                x:Name="sortBox"
-                Placeholder="Selected Row"
-            />
-            <Button
-                x:Name="sortButton"
-                Text="Sort"
-                Clicked="OnButtonClicked"
-            />
-
-        </HorizontalStackLayout>
+    <ScrollView>
         <Grid>
-            <SS:SpreadsheetGrid x:Name="spreadsheetGrid" />
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" /> 
+                <RowDefinition Height="*" />  
+            </Grid.RowDefinitions>
+
+            <StackLayout Grid.Row="0" Grid.Column="0">
+                <Label x:Name="nameBox" Padding="10" ></Label>
+                <Label x:Name="valueBox" Padding="10"></Label>
+
+                <HorizontalStackLayout>
+                    <Label Padding="10">Content:</Label>
+                    <Entry x:Name="contentBox" Placeholder="  Type Here" Completed="ContentEntryCompleted" />
+
+                </HorizontalStackLayout>
+
+            </StackLayout>
+
+            <Grid Grid.Row="1" Grid.Column="0">
+                 <SS:SpreadsheetGrid x:Name="spreadsheetGrid" />
+            </Grid>
         </Grid>
-    </VerticalStackLayout>
+
+    </ScrollView>
 
 </ContentPage>
 

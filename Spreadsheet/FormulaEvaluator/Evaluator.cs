@@ -151,7 +151,7 @@ public static class Evaluator
             int result = Evaluator.DoOperation(value1, value2, operation);
 
             return result;
-        } catch (InvalidOperationException e)
+        } catch (InvalidOperationException)
         {
             throw new ArgumentException();
         }
@@ -171,7 +171,7 @@ public static class Evaluator
             int result = Evaluator.DoOperation(value1, value2, operation);
 
             return result;
-        } catch (InvalidOperationException e)
+        } catch (InvalidOperationException)
         {
             throw new ArgumentException();
         }

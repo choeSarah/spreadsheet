@@ -1,5 +1,6 @@
-﻿using System.Diagnostics;
+using System.Diagnostics;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using CommunityToolkit.Maui.Views;
@@ -16,7 +17,7 @@ namespace SpreadsheetGUI;
 /// </summary>
 public partial class MainPage : ContentPage
 {
-    public static Spreadsheet ss = new Spreadsheet(s => true, s => s.ToUpper(), "ps6");
+    public static Spreadsheet ss = new Spreadsheet(s => new Regex("^[A-Za-z][0-9]{0,2}$").IsMatch(s), s => s.ToUpper(), "ps6");
 
     /// <summary>
     /// Constructor for the demo
@@ -33,8 +34,8 @@ public partial class MainPage : ContentPage
         spreadsheetGrid.SelectionChanged += displaySelection;
         spreadsheetGrid.SetSelection(0, 0);
         contentBox.Text = "";
-        nameBox.Text = "A1";
-        valueBox.Text = "";
+        nameBox.Text = "Cell: A1";
+        valueBox.Text = "Value: " + ss.GetCellValue("A1");
 
     }
 
@@ -72,6 +73,10 @@ public partial class MainPage : ContentPage
 
     }
 
+    /// <summary>
+    /// Method that is in charge of what is being displayed onto the grid
+    /// </summary>
+    /// <param name="grid"></param>
     private void displaySelection(ISpreadsheetGrid grid)
     {
         spreadsheetGrid.GetSelection(out int col, out int row);
@@ -83,22 +88,36 @@ public partial class MainPage : ContentPage
         string oldValue = ss.GetCellValue(cellName).ToString();
 
 
-        if (value == "")
+        if (value == "") //if the cell is empty:
         {
             contentBox.Text = "";
-            nameBox.Text = cellName;
-            valueBox.Text = value;
+            nameBox.Text = "Cell: " + cellName;
+            valueBox.Text = "Value: " + value;
 
         }
-        else
+        else //if the cell is not empty:
         {
             contentBox.Text = ss.GetCellContents(cellName).ToString();
-            nameBox.Text = cellName;
-            valueBox.Text = value;
-            Console.WriteLine("Cell: " + cellName + "; Value: " + value);
+            nameBox.Text = "Cell: " + cellName;
+
+            if (ss.GetCellValue(cellName) is FormulaError)
+            {
+                valueBox.Text = "Value: #ERROR";
+
+            }
+            else
+            {
+                valueBox.Text = "Value: " + value;
+
+            }
         }
     }
 
+    /// <summary>
+    /// Method that handles what to do with the content input from user
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void ContentEntryCompleted(object sender, EventArgs e)
     {
         spreadsheetGrid.GetSelection(out int col, out int row);
@@ -111,31 +130,11 @@ public partial class MainPage : ContentPage
 
         try //try to set content of cell
         {
-            ss.SetContentsOfCell(cellName, enteredText);
-            string cellValue = ss.GetCellValue(cellName).ToString();
-            Console.WriteLine("Changed: " + ss.Changed);
-
-
-            if (ss.GetCellValue(cellName) is FormulaError)
-            {
-
-                DisplayAlert("ERROR", "Invalid formula: FormulaError", "OK");
-                contentBox.Text = oldContent;
-                nameBox.Text = cellName;
-                valueBox.Text = oldValue;
-            }
-            else
-            {
-                spreadsheetGrid.SetValue(col, row, cellValue);
-                contentBox.Text = enteredText;
-                nameBox.Text = cellName;
-                valueBox.Text = "" + ss.GetCellValue(cellName);
-
-
-            }
+            SetCellContents(cellName, enteredText, row, col);
 
         } catch (FormulaFormatException)
         {
+            
             DisplayAlert("ERROR", "Invalid formula: FormulaFormatException", "OK");
             contentBox.Text = oldContent; 
 
@@ -146,58 +145,183 @@ public partial class MainPage : ContentPage
         }
     }
 
-    private void OnButtonClicked(Object sender, EventArgs e)
+    private void SetCellContents(string cellName, string enteredText, int row, int col)
     {
-        string enteredInput = sortBox.Text;
-        try
+
+        string oldContent = ss.GetCellContents(cellName).ToString();
+        string oldValue = ss.GetCellValue(cellName).ToString();
+
+        IList<string> dependees = ss.SetContentsOfCell(cellName, enteredText);
+        string cellValue = ss.GetCellValue(cellName).ToString();
+
+        //updating grid based on the dependencies
+        foreach (string s in dependees)
         {
-            int selectRow = int.Parse(enteredInput) - 1;
-            string[] rowValues = new string[26];
+            string dependeeCellValue = ss.GetCellValue(s).ToString();
 
-            for (int i=0; i< 26; i++)
+            int c = (int)s[0] - (int)'A';
+            int r = int.Parse(s.Substring(1)) - 1;
+
+            if (ss.GetCellValue(s) is FormulaError)
             {
-                if (spreadsheetGrid.GetValue(i, selectRow, out rowValues[i]))
-                {}
+                spreadsheetGrid.SetValue(c, r, "#ERROR");
+
             }
+            else
+            {
+                spreadsheetGrid.SetValue(c, r, dependeeCellValue);
 
-
-        } catch (Exception) {
-            DisplayAlert("ERROR", "Please input a valid row", "OK");
-
+            }
         }
 
+
+        if (ss.GetCellValue(cellName) is FormulaError) //if the value of the cell is a formulaError
+        {
+            spreadsheetGrid.SetValue(col, row, "#ERROR");
+            contentBox.Text = enteredText;
+            nameBox.Text = "Cell: " + cellName;
+            valueBox.Text = "#ERROR";
+        }
+        else //if not
+        {
+            spreadsheetGrid.SetValue(col, row, cellValue);
+            contentBox.Text = enteredText;
+            nameBox.Text = "Cell: " + cellName;
+            valueBox.Text = "Value: " + ss.GetCellValue(cellName);
+
+
+        }
     }
 
-    private void NewClicked(Object sender, EventArgs e)
+    /// <summary>
+    /// Method to handle clicking to open a new file
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private async void NewClicked(Object sender, EventArgs e)
     {
-        spreadsheetGrid.Clear();
+        if (ss.Changed == true) //if the spreadsheet has been changed
+        {
+            bool answer = await DisplayAlert("Are you sure?", "You're about to open a new file without saving", "Yes", "No");
+
+            if (answer == true) //if user really wants to open a new file without saving
+            {
+                spreadsheetGrid.Clear();
+                ss = new Spreadsheet(s => true, s => s.ToUpper(), "ps6");
+
+                contentBox.Text = "";
+                valueBox.Text = "Value: ";
+            }
+   
+        } else //if spreadhsheet has not been changed
+        {
+            spreadsheetGrid.Clear();
+            ss = new Spreadsheet(s => true, s => s.ToUpper(), "ps6");
+        }
     }
 
-    private async void SaveClicked (Object sender, EventArgs e)
+
+    private async void SaveClicked(Object sender, EventArgs e)
     {
         string result = await DisplayPromptAsync("Save to File", "Enter Filename");
-        ss.Save(result);
+        FileResult fileResult = await FilePicker.Default.PickAsync();
+        string filePath = fileResult.FullPath;
+        int IntToPath = filePath.LastIndexOf("\\");
+        string filePathToSave = filePath.Substring(0, IntToPath + 1);
+        filePathToSave = Path.Combine(filePathToSave, result);
+        ss.Save(filePathToSave + ".sprd");
     }
 
     private async void HelpClicked(Object sender, EventArgs e)
     {
-        await DisplayAlert("Information", "select cell to modify \nmodify cell by using the top textbar.", "Ok");
+        await DisplayAlert("Help", "At the top of the spreadsheet, the cell name and value are displayed and cannot be changed.\n" +
+            "Underneath them is the textbox for changing a cell’s content. \n\n" +
+            "To select a cell, click on its placement in the grid.\n" +
+            "To modify a cell, type the desired value into the content text box at the top.\n\n" +
+            "To clear a Spreadsheet, click on “New” in the File menu.\n" +
+            "To open an existing Spreadsheet, click on “Open” in the File menu.\n" +
+            "To save a Spreadsheet, click on “Save” in the File menu and type in a name.\n\n" +
+            "To split cell values across columns, select the cell and click on “Split”. \n" +
+            "Based on how the cell values are initially combined, you may split them on commas, semicolons, period, or spaces. "
+            , "Ok");
 
     }
 
-    private async void CloseClicked(Object sender, EventArgs e)
+    private void SplitC_Clicked(Object sender, EventArgs e)
     {
-        bool userInput = await DisplayAlert("Confirmation", "You're about to close without saving. Do you want to continue?", "Yes", "No");
+        Split_Clicked(0);
+    }
 
-        if (userInput)
+    private void SplitS_Clicked(Object sender, EventArgs e)
+    {
+        Split_Clicked(1);
+    }
+
+    private void SplitP_Clicked(Object sender, EventArgs e)
+    {
+        Split_Clicked(2);
+    }
+
+    private void SplitSp_Clicked(Object sender, EventArgs e)
+    {
+        Split_Clicked(3);
+    }
+
+    /// <summary>
+    /// Main method to handle the functionality split. Split allows the user to automatically split a cell's content across
+    /// neighboring columns, but the same row. This splitting can follow one of 4 rules: splitting by a comma, semicolon, period, or a space.
+    /// </summary>
+    /// <param name="cOrS"></param>
+    private void Split_Clicked(int cOrS)
+    {
+        spreadsheetGrid.GetSelection(out int col, out int row); //getting the cell
+        string cellName = crToCellName(col, row); //getting the name of cell
+        string cellContent = ss.GetCellContents(cellName).ToString(); //getting the content of the cell
+
+        //if the cell content is not empty
+        if (cellContent.Length > 0)
         {
-            System.Environment.Exit(0);
-            Application.Current.Quit();
-        } else
-        {
+            //split the content into tokens based on different rules:
+            string[] splitString;
+            if (cOrS == 0)
+            {
+                splitString = cellContent.Split(",");   
+            } else if (cOrS == 1)
+            {
+                splitString = cellContent.Split(";");
+
+            } else if (cOrS == 2) {
+                splitString = cellContent.Split(".");
+
+            } else
+            {
+                splitString = cellContent.Split(" ");
+
+            }
+
+            string newCellCol = cellName;
+
+
+            //for each token
+            foreach (string str in splitString)
+            {
+                try //set the neighborhood cells
+                {
+                    SetCellContents(newCellCol, str, row, col++);
+                    newCellCol = ((char)(((int)newCellCol[0]) + 1)).ToString() + (row + 1);
+                }
+                catch (FormulaFormatException)
+                {
+                    DisplayAlert("ERROR", "Invalid formula: FormulaFormatException", "OK");
+                    contentBox.Text = "";
+                }
+            }
 
         }
+
     }
+
+
 
     /// <summary>
     /// Opens any file as text and prints its contents.
@@ -208,13 +332,9 @@ public partial class MainPage : ContentPage
     {
         if (ss.Changed == true)
         {
-            bool answer = await DisplayAlert("Question?", "You're about to open without saving", "Yes", "No");
+            bool answer = await DisplayAlert("Are you sure?", "You're about to open without saving", "Yes", "No");
 
             if (answer == true)
-            {
-                System.Environment.Exit(0);
-            }
-            else
             {
                 try
                 {
@@ -235,6 +355,12 @@ public partial class MainPage : ContentPage
 
                             spreadsheetGrid.SetValue(c, r, ss.CellToName[s].StringForm);
                         }
+
+                        spreadsheetGrid.SelectionChanged += displaySelection;
+                        spreadsheetGrid.SetSelection(0, 0);
+                        contentBox.Text = ss.GetCellContents("A1").ToString();
+                        nameBox.Text = "Cell: A1";
+                        valueBox.Text = "Value: " + ss.GetCellValue("A1").ToString();
                     }
                     else
                     {
@@ -265,9 +391,14 @@ public partial class MainPage : ContentPage
                         int start = (int)'A';
                         int c = (int)s[0] - start;
                         int r = int.Parse(s.Substring(1)) - 1;
-
                         spreadsheetGrid.SetValue(c, r, ss.CellToName[s].StringForm);
                     }
+
+                    spreadsheetGrid.SelectionChanged += displaySelection;
+                    spreadsheetGrid.SetSelection(0, 0);
+                    contentBox.Text = ss.GetCellContents("A1").ToString();
+                    nameBox.Text = "Cell: A1";
+                    valueBox.Text = "Value: " + ss.GetCellValue("A1").ToString();
                 }
                 else
                 {
